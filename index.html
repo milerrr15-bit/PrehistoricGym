@@ -159,7 +159,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            overflow: hidden;
+            border: 3px solid #ffcb05;
+        }
+
+        .leader-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .pokemon-grid {
@@ -191,7 +198,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            overflow: hidden;
+            border: 2px solid #fff;
+        }
+
+        .pokemon-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .divider {
@@ -257,23 +271,33 @@
                 <h2>Líderes</h2>
                 <div class="leaders-grid">
                     <div class="leader-card active">
-                        <div class="leader-image"><i class="fas fa-crown"></i></div>
+                        <div class="leader-image">
+                            <img src="https://archives.bulbagarden.net/media/upload/5/53/Lorelei_OS_2.png" alt="Lorelei">
+                        </div>
                         <div class="leader-name">Lorelei</div>
                     </div>
                     <div class="leader-card">
-                        <div class="leader-image">B</div>
+                        <div class="leader-image">
+                            <img src="https://archives.bulbagarden.net/media/upload/0/09/Bruno_OS_2.png" alt="Bruno">
+                        </div>
                         <div class="leader-name">Bruno</div>
                     </div>
                     <div class="leader-card">
-                        <div class="leader-image">A</div>
+                        <div class="leader-image">
+                            <img src="https://archives.bulbagarden.net/media/upload/6/6b/Agatha_OS_2.png" alt="Agatha">
+                        </div>
                         <div class="leader-name">Agatha</div>
                     </div>
                     <div class="leader-card">
-                        <div class="leader-image">L</div>
+                        <div class="leader-image">
+                            <img src="https://archives.bulbagarden.net/media/upload/2/2d/Lance_OS_2.png" alt="Lance">
+                        </div>
                         <div class="leader-name">Lance</div>
                     </div>
                     <div class="leader-card">
-                        <div class="leader-image">B</div>
+                        <div class="leader-image">
+                            <img src="https://archives.bulbagarden.net/media/upload/3/3f/Blue_OS_2.png" alt="Blue">
+                        </div>
                         <div class="leader-name">Blue</div>
                     </div>
                 </div>
@@ -283,51 +307,75 @@
                 <h2>Pokémon de Lorelei</h2>
                 <div class="pokemon-grid">
                     <div class="pokemon-card">
-                        <div class="pokemon-image">A</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/144.png" alt="Articuno">
+                        </div>
                         <div class="pokemon-name">Articuno</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">B</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/438.png" alt="Bonsly">
+                        </div>
                         <div class="pokemon-name">Bromong</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">C</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/390.png" alt="Chimchar">
+                        </div>
                         <div class="pokemon-name">Chamey</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">C</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/344.png" alt="Claydol">
+                        </div>
                         <div class="pokemon-name">Claydel</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">D</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png" alt="Dragonite">
+                        </div>
                         <div class="pokemon-name">Dragonite</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">E</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/103.png" alt="Exeggutor">
+                        </div>
                         <div class="pokemon-name">Exegsutor</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">G</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/55.png" alt="Golduck">
+                        </div>
                         <div class="pokemon-name">Golduck</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">G</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/623.png" alt="Golurk">
+                        </div>
                         <div class="pokemon-name">Golurk</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">H</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/297.png" alt="Hariyama">
+                        </div>
                         <div class="pokemon-name">Hariyama</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">J</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png" alt="Jynx">
+                        </div>
                         <div class="pokemon-name">Jynx</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">L</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png" alt="Lapras">
+                        </div>
                         <div class="pokemon-name">Lapras</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">L</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448.png" alt="Lucario">
+                        </div>
                         <div class="pokemon-name">Lucario</div>
                     </div>
                 </div>
@@ -336,35 +384,51 @@
 
                 <div class="pokemon-grid">
                     <div class="pokemon-card">
-                        <div class="pokemon-image">M</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/462.png" alt="Magnezone">
+                        </div>
                         <div class="pokemon-name">Magnezone</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">M</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/226.png" alt="Mantine">
+                        </div>
                         <div class="pokemon-name">Mantine</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">N</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/29.png" alt="Nidoran♀">
+                        </div>
                         <div class="pokemon-name">Nidsling</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">M</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/31.png" alt="Nidoqueen">
+                        </div>
                         <div class="pokemon-name">Midoqueen</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">R</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png" alt="Raichu">
+                        </div>
                         <div class="pokemon-name">Raichu</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">S</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png" alt="Slowbro">
+                        </div>
                         <div class="pokemon-name">Slowbro</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">T</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/468.png" alt="Togekiss">
+                        </div>
                         <div class="pokemon-name">Togekiss</div>
                     </div>
                     <div class="pokemon-card">
-                        <div class="pokemon-image">V</div>
+                        <div class="pokemon-image">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/663.png" alt="Talonflame">
+                        </div>
                         <div class="pokemon-name">Vliepiume</div>
                     </div>
                 </div>
@@ -388,6 +452,10 @@
             card.addEventListener('click', () => {
                 leaderCards.forEach(c => c.classList.remove('active'));
                 card.classList.add('active');
+                
+                // Cambiar el título de la sección de Pokémon
+                const leaderName = card.querySelector('.leader-name').textContent;
+                document.querySelector('.leaders h2:nth-child(3)').textContent = `Pokémon de ${leaderName}`;
             });
         });
     </script>
