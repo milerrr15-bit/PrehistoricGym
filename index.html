@@ -1,137 +1,395 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>PokéMMO Gym Rerun Guide</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      color: #333;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #222;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-    header p {
-      margin: 5px 0 0;
-      font-size: 14px;
-    }
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px;
-    }
-    h2 {
-      margin-top: 40px;
-      color: #444;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 5px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-      margin-bottom: 30px;
-    }
-    table th, table td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-    table th {
-      background: #333;
-      color: white;
-    }
-    tr:nth-child(even) {
-      background: #f9f9f9;
-    }
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: #222;
-      color: white;
-      font-size: 13px;
-      margin-top: 40px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Liga PokeMMO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #ffcb05;
+            text-shadow: 3px 3px 0 #356abc, -1px -1px 0 #356abc, 1px -1px 0 #356abc, -1px 1px 0 #356abc;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            color: #f5f5f5;
+        }
+
+        .content {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .regions {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .leaders {
+            flex: 2;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .pokemon {
+            flex: 3;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffcb05;
+            color: #ffcb05;
+        }
+
+        .region-list {
+            list-style: none;
+        }
+
+        .region-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .region-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateX(5px);
+        }
+
+        .region-item.active {
+            background: rgba(255, 203, 5, 0.3);
+            border-left: 5px solid #ffcb05;
+        }
+
+        .region-icon {
+            width: 30px;
+            height: 30px;
+            background: #356abc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .leaders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .leader-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .leader-card:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .leader-card.active {
+            background: rgba(255, 203, 5, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 203, 5, 0.4);
+        }
+
+        .leader-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            background: #4a6491;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .pokemon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .pokemon-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 15px 10px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .pokemon-card:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .pokemon-image {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffcb05, transparent);
+            margin: 25px 0;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Farm Liga PokeMMO</h1>
+            <p class="subtitle">Selecciona una región para ver los líderes</p>
+        </header>
 
-  <header>
-    <h1>PokéMMO Gym Rerun Guide</h1>
-    <p>List of Gym Leaders, Regions and Rewards</p>
-  </header>
+        <div class="content">
+            <div class="regions">
+                <h2>Regiones</h2>
+                <ul class="region-list">
+                    <li class="region-item active">
+                        <div class="region-icon"><i class="fas fa-star"></i></div>
+                        <div class="region-name">Tips</div>
+                    </li>
+                    <li class="region-item">
+                        <div class="region-icon">K</div>
+                        <div class="region-name">Kanto</div>
+                    </li>
+                    <li class="region-item">
+                        <div class="region-icon">J</div>
+                        <div class="region-name">Jolito</div>
+                    </li>
+                    <li class="region-item">
+                        <div class="region-icon">H</div>
+                        <div class="region-name">Hoem</div>
+                    </li>
+                    <li class="region-item">
+                        <div class="region-icon">S</div>
+                        <div class="region-name">Simoh</div>
+                    </li>
+                    <li class="region-item">
+                        <div class="region-icon">T</div>
+                        <div class="region-name">Tesella</div>
+                    </li>
+                </ul>
+            </div>
 
-  <div class="container">
-    <h2>Kanto Gyms</h2>
-    <table>
-      <tr>
-        <th>Leader</th>
-        <th>City</th>
-        <th>Type</th>
-        <th>Reward</th>
-      </tr>
-      <tr>
-        <td>Brock</td>
-        <td>Pewter</td>
-        <td>Rock</td>
-        <td>💰 Money</td>
-      </tr>
-      <tr>
-        <td>Misty</td>
-        <td>Cerulean</td>
-        <td>Water</td>
-        <td>💰 Money</td>
-      </tr>
-      <tr>
-        <td>Lt. Surge</td>
-        <td>Vermilion</td>
-        <td>Electric</td>
-        <td>💰 Money</td>
-      </tr>
-    </table>
+            <div class="leaders">
+                <h2>Líderes</h2>
+                <div class="leaders-grid">
+                    <div class="leader-card active">
+                        <div class="leader-image"><i class="fas fa-crown"></i></div>
+                        <div class="leader-name">Lorelei</div>
+                    </div>
+                    <div class="leader-card">
+                        <div class="leader-image">B</div>
+                        <div class="leader-name">Bruno</div>
+                    </div>
+                    <div class="leader-card">
+                        <div class="leader-image">A</div>
+                        <div class="leader-name">Agatha</div>
+                    </div>
+                    <div class="leader-card">
+                        <div class="leader-image">L</div>
+                        <div class="leader-name">Lance</div>
+                    </div>
+                    <div class="leader-card">
+                        <div class="leader-image">B</div>
+                        <div class="leader-name">Blue</div>
+                    </div>
+                </div>
 
-    <h2>Hoenn Gyms</h2>
-    <table>
-      <tr>
-        <th>Leader</th>
-        <th>City</th>
-        <th>Type</th>
-        <th>Reward</th>
-      </tr>
-      <tr>
-        <td>Roxanne</td>
-        <td>Rustboro</td>
-        <td>Rock</td>
-        <td>💰 Money</td>
-      </tr>
-      <tr>
-        <td>Brawly</td>
-        <td>Dewford</td>
-        <td>Fighting</td>
-        <td>💰 Money</td>
-      </tr>
-      <tr>
-        <td>Wattson</td>
-        <td>Mauville</td>
-        <td>Electric</td>
-        <td>💰 Money</td>
-      </tr>
-    </table>
-  </div>
+                <div class="divider"></div>
 
-  <footer>
-    Made with ❤️ for PokéMMO players | Your Name
-  </footer>
+                <h2>Pokémon de Lorelei</h2>
+                <div class="pokemon-grid">
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">A</div>
+                        <div class="pokemon-name">Articuno</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">B</div>
+                        <div class="pokemon-name">Bromong</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">C</div>
+                        <div class="pokemon-name">Chamey</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">C</div>
+                        <div class="pokemon-name">Claydel</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">D</div>
+                        <div class="pokemon-name">Dragonite</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">E</div>
+                        <div class="pokemon-name">Exegsutor</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">G</div>
+                        <div class="pokemon-name">Golduck</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">G</div>
+                        <div class="pokemon-name">Golurk</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">H</div>
+                        <div class="pokemon-name">Hariyama</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">J</div>
+                        <div class="pokemon-name">Jynx</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">L</div>
+                        <div class="pokemon-name">Lapras</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">L</div>
+                        <div class="pokemon-name">Lucario</div>
+                    </div>
+                </div>
 
+                <div class="divider"></div>
+
+                <div class="pokemon-grid">
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">M</div>
+                        <div class="pokemon-name">Magnezone</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">M</div>
+                        <div class="pokemon-name">Mantine</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">N</div>
+                        <div class="pokemon-name">Nidsling</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">M</div>
+                        <div class="pokemon-name">Midoqueen</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">R</div>
+                        <div class="pokemon-name">Raichu</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">S</div>
+                        <div class="pokemon-name">Slowbro</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">T</div>
+                        <div class="pokemon-name">Togekiss</div>
+                    </div>
+                    <div class="pokemon-card">
+                        <div class="pokemon-image">V</div>
+                        <div class="pokemon-name">Vliepiume</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Interactividad para las regiones
+        const regionItems = document.querySelectorAll('.region-item');
+        regionItems.forEach(item => {
+            item.addEventListener('click', () => {
+                regionItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+
+        // Interactividad para los líderes
+        const leaderCards = document.querySelectorAll('.leader-card');
+        leaderCards.forEach(card => {
+            card.addEventListener('click', () => {
+                leaderCards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
