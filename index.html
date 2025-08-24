@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Pokémon MMO Gym Rerun Guide - Pixel Art Interactivo</title>
+<title>Pokémon MMO Gym Rerun Guide - Pixel Art Retro Completo</title>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
 body {
@@ -10,179 +10,208 @@ body {
   color: white;
   font-family: 'Press Start 2P', cursive;
   text-align: center;
+  margin: 0;
   padding: 20px;
 }
-h1 { font-size: 2.5em; margin-top: 20px; text-shadow: 2px 2px #000; }
-h2 { font-size: 1.8em; margin: 30px 0 10px 0; text-decoration: underline; text-shadow: 1px 1px #000; }
-h3 { font-size: 1.4em; margin: 20px 0 10px 0; text-shadow: 1px 1px #000; cursor: pointer; }
-.trainer { margin: 15px auto; }
-.pokemon { display: inline-block; margin: 8px; text-align: center; cursor: pointer; }
+h1 { font-size: 2.5em; margin: 20px 0; text-shadow: 2px 2px #000; }
+h2 { font-size: 2em; margin: 30px 0 10px 0; text-decoration: underline; text-shadow: 1px 1px #000; }
+h3 { font-size: 1.5em; margin: 15px 0; cursor: pointer; text-shadow: 1px 1px #000; }
+.region { border-top: 3px solid #555; padding-top: 20px; margin-top: 30px; }
+.leader-card {
+  display: inline-block;
+  background: #222;
+  border: 3px solid #555;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 15px;
+  width: 200px;
+  vertical-align: top;
+  box-shadow: 2px 2px #000;
+}
+.trainer-img img { width: 100px; height: 100px; image-rendering: pixelated; margin-bottom: 10px; }
+.pokemon { display: inline-block; margin: 5px; text-align: center; }
 .pokemon img { width: 80px; height: 80px; image-rendering: pixelated; }
-.trainer-img img { width: 100px; height: 100px; image-rendering: pixelated; margin-bottom: 5px; cursor: pointer; }
-.strategy { font-size: 0.9em; margin: 10px 0; white-space: pre-line; text-align: center; display: none; border: 1px solid #555; padding: 10px; border-radius: 8px; background: #222; }
-.region { border-top: 2px solid #555; padding-top: 20px; margin-top: 20px; }
+.strategy {
+  font-size: 0.9em;
+  margin-top: 10px;
+  white-space: pre-line;
+  display: none;
+  border: 1px solid #555;
+  padding: 8px;
+  border-radius: 6px;
+  background: #111;
+  text-align: center;
+}
 </style>
 </head>
 <body>
 
-<h1>🏆 Pokémon MMO Gym Rerun Guide (Prehistoric 5 Route)</h1>
+<h1>🏆 Pokémon MMO Gym Rerun Guide - Pixel Art Retro Completo</h1>
 
 <!-- ======================= HOENN ======================= -->
 <div class="region">
 <h2>🌴 HOENN</h2>
-<!-- HOENN leaders ya definidos aquí -->
+
+<div class="leader-card">
+<h3 onclick="toggleStrategy('lavaridge')">Lavaridge (Fire)</h3>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/lavaridge.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif"><p>Archeops</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif"><p>Blastoise</p></div>
+<div class="strategy" id="lavaridge">Archeops + Blastoise</div>
+</div>
+
+<div class="leader-card">
+<h3 onclick="toggleStrategy('mauville')">Mauville (Electric)</h3>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/mauville.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif"><p>Archeops</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran</p></div>
+<div class="strategy" id="mauville">Archeops + Heatran</div>
+</div>
+
+<div class="leader-card">
+<h3 onclick="toggleStrategy('fortree')">Fortree (Flying)</h3>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/fortree.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif"><p>Archeops</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion</p></div>
+<div class="strategy" id="fortree">
+If Rain [Si Llueve]  
+T1: Swap Archeops ➔ Torkoal  
+T2: Swap Torkoal ➔ Archeops  
+Chance of Archeops going down, continue if so.  
+If Torkoal paralyzed from Thunder, use Paralyze Heal after gym or PC Heal
+</div>
+</div>
+
+<div class="leader-card">
+<h3 onclick="toggleStrategy('dewford')">Dewford (Fighting)</h3>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/dewford.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif"><p>Blastoise</p></div>
+<div class="strategy" id="dewford">Heatran + Blastoise</div>
+</div>
+
+<div class="leader-card">
+<h3 onclick="toggleStrategy('petalburg')">Petalburg (Normal)</h3>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/petalburg.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/torkoal.gif"><p>Torkoal</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif"><p>Blastoise</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran (Plume)</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion</p></div>
+<div class="strategy" id="petalburg">Torkoal + Blastoise into Heatran (Plume) + Typhlosion</div>
 </div>
 
 <!-- ======================= UNOVA ======================= -->
 <div class="region">
 <h2>🗽 UNOVA</h2>
-<!-- UNOVA leaders ya definidos aquí -->
+
+<div class="leader-card">
+<h3 onclick="toggleStrategy('castelia')">Castelia (Bug)</h3>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/castelia.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif"><p>Blastoise</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran</p></div>
+<div class="strategy" id="castelia">Blastoise + Heatran  
+If hurt from Accelgor team, heal here.</div>
+</div>
+
+<div class="leader-card">
+<h3 onclick="toggleStrategy('nimbasa')">Nimbasa (Electric)</h3>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/nimbasa.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif"><p>Blastoise</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran</p></div>
+<div class="strategy" id="nimbasa">Blastoise + Heatran  
+Chance at Heatran getting hurt. Continue if so.</div>
+</div>
+
+<div class="leader-card">
+<h3 onclick="toggleStrategy('driftveil')">Driftveil (Ground)</h3>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/driftveil.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/torkoal.gif"><p>Torkoal</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif"><p>Archeops</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran (Plume)</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion</p></div>
+<div class="strategy" id="driftveil">Torkoal + Archeops into Heatran (Plume) + Typhlosion</div>
 </div>
 
 <!-- ======================= STRIATON ======================= -->
 <div class="region">
 <h2>⚡ STRIATON</h2>
-<!-- Striaton leaders ya definidos aquí -->
+
+<div class="leader-card">
+<h3 onclick="toggleStrategy('chili')">Chili (Fire)</h3>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/chili.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif"><p>Archeops</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion</p></div>
+<div class="strategy" id="chili">Fire Leader: Archeops + Typhlosion</div>
+</div>
+
+<div class="leader-card">
+<h3 onclick="toggleStrategy('cress')">Cress (Water)</h3>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/cress.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/torkoal.gif"><p>Torkoal</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif"><p>Archeops</p></div>
+<div class="strategy" id="cress">Water Leader: Torkoal + Archeops</div>
+</div>
+
+<div class="leader-card">
+<h3 onclick="toggleStrategy('shawna')">Shawna (Grass)</h3>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/shawna.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion (Plume)</p></div>
+<div class="strategy" id="shawna">Grass Leader: Heatran + Typhlosion (Plume)</div>
 </div>
 
 <!-- ======================= JOHTO ======================= -->
 <div class="region">
-<h2>🌟 JOHTO</h2>
+<h2>🎐 JOHTO</h2>
 
+<div class="leader-card">
 <h3 onclick="toggleStrategy('violet')">Violet (Flying)</h3>
-<div class="trainer-img" onclick="toggleStrategy('violet')"><img src="https://play.pokemonshowdown.com/sprites/trainers/violet.png"></div>
-<div class="trainer" onclick="toggleStrategy('violet')">
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif"><p>Blastoise</p></div>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/violet.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif"><p>Blastoise</p></div>
+<div class="strategy" id="violet">Heatran + Blastoise</div>
 </div>
-<div class="strategy" id="violet">Heatran + Blastoise  
-Chance at Heatran and Blastoise getting hurt. Continue if so.</div>
 
+<div class="leader-card">
 <h3 onclick="toggleStrategy('mahogany')">Mahogany (Ice)</h3>
-<div class="trainer-img" onclick="toggleStrategy('mahogany')"><img src="https://play.pokemonshowdown.com/sprites/trainers/mahogany.png"></div>
-<div class="trainer" onclick="toggleStrategy('mahogany')">
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran (Plume)</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion</p></div>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/mahogany.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran (Plume)</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion</p></div>
+<div class="strategy" id="mahogany">Heatran (Plume) + Typhlosion  
+If Frozen from Blizzard, use Ice Heal</div>
 </div>
-<div class="strategy" id="mahogany">If Frozen from Blizzard, use Ice Heal on frozen one’s turn  
-PC RESET (~26 mins on charm)</div>
-
-<h3 onclick="toggleStrategy('goldenrod')">Goldenrod (Normal)</h3>
-<div class="trainer-img" onclick="toggleStrategy('goldenrod')"><img src="https://play.pokemonshowdown.com/sprites/trainers/goldenrod.png"></div>
-<div class="trainer" onclick="toggleStrategy('goldenrod')">
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif"><p>Blastoise</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran</p></div>
-</div>
-<div class="strategy" id="goldenrod">Put Blastoise on left side above Heatran  
-Chance at Heatran getting hurt. Continue if so.</div>
-
-<h3 onclick="toggleStrategy('azalea')">Azalea (Bug)</h3>
-<div class="trainer-img" onclick="toggleStrategy('azalea')"><img src="https://play.pokemonshowdown.com/sprites/trainers/azalea.png"></div>
-<div class="trainer" onclick="toggleStrategy('azalea')">
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion (Plume)</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran</p></div>
-</div>
-<div class="strategy" id="azalea">If Sand [Arena] appears  
-Swap Typhlosion ➔ Torkoal  
-Swap Torkoal ➔ Typhlosion (Plume)</div>
-
-<h3 onclick="toggleStrategy('cianwood')">Cianwood (Fighting)</h3>
-<div class="trainer-img" onclick="toggleStrategy('cianwood')"><img src="https://play.pokemonshowdown.com/sprites/trainers/cianwood.png"></div>
-<div class="trainer" onclick="toggleStrategy('cianwood')">
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/torkoal.gif"><p>Torkoal</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif"><p>Blastoise</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran (Plume)</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion</p></div>
-</div>
-<div class="strategy" id="cianwood">Turn 1 rock slide flinches can be annoying. Skip if preferred.</div>
-
-<h3 onclick="toggleStrategy('olivine')">Olivine (Steel)</h3>
-<div class="trainer-img" onclick="toggleStrategy('olivine')"><img src="https://play.pokemonshowdown.com/sprites/trainers/olivine.png"></div>
-<div class="trainer" onclick="toggleStrategy('olivine')">
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif"><p>Archeops</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion</p></div>
-</div>
-<div class="strategy" id="olivine">If Archeops goes down replace Heatran  
-Earth Power vs Corsola/Rapidash  
-Eruption vs Blastoise Team  
-PC RESET (~18 mins on charm)</div>
 
 <!-- ======================= SINNOH ======================= -->
 <div class="region">
 <h2>❄ SINNOH</h2>
 
+<div class="leader-card">
 <h3 onclick="toggleStrategy('veilstone')">Veilstone (Fighting)</h3>
-<div class="trainer-img" onclick="toggleStrategy('veilstone')"><img src="https://play.pokemonshowdown.com/sprites/trainers/veilstone.png"></div>
-<div class="trainer" onclick="toggleStrategy('veilstone')">
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif"><p>Archeops</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion</p></div>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/veilstone.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif"><p>Archeops</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion</p></div>
+<div class="strategy" id="veilstone">Archeops + Typhlosion</div>
 </div>
-<div class="strategy" id="veilstone">Chance at Archeops getting hurt. Continue if so, or heal if needed.</div>
 
+<div class="leader-card">
 <h3 onclick="toggleStrategy('eterna')">Eterna (Grass)</h3>
-<div class="trainer-img" onclick="toggleStrategy('eterna')"><img src="https://play.pokemonshowdown.com/sprites/trainers/eterna.png"></div>
-<div class="trainer" onclick="toggleStrategy('eterna')">
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif"><p>Archeops</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran</p></div>
-</div>
-<div class="strategy" id="eterna">If Archeops is less than 50%, heal after. Replace Typhlosion if needed.</div>
-
-<h3 onclick="toggleStrategy('sunyshore')">Sunyshore (Electric)</h3>
-<div class="trainer-img" onclick="toggleStrategy('sunyshore')"><img src="https://play.pokemonshowdown.com/sprites/trainers/sunyshore.png"></div>
-<div class="trainer" onclick="toggleStrategy('sunyshore')">
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif"><p>Archeops</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif"><p>Blastoise</p></div>
-</div>
-<div class="strategy" id="sunyshore">If Lanturn lead, swap Blastoise ➔ Torkoal. Handle Thunder chance.  
-T2: Explosion  
-T3: Typhlosion + Heatran (Plume)</div>
-
-<h3 onclick="toggleStrategy('pastoria')">Pastoria (Water)</h3>
-<div class="trainer-img" onclick="toggleStrategy('pastoria')"><img src="https://play.pokemonshowdown.com/sprites/trainers/pastoria.png"></div>
-<div class="trainer" onclick="toggleStrategy('pastoria')">
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/torkoal.gif"><p>Torkoal</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif"><p>Archeops</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran (Plume)</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion</p></div>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/eterna.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif"><p>Archeops</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran</p></div>
+<div class="strategy" id="eterna">Archeops + Heatran</div>
 </div>
 
 <!-- ======================= KANTO ======================= -->
 <div class="region">
-<h2>🌊 KANTO</h2>
+<h2>🗻 KANTO</h2>
 
+<div class="leader-card">
 <h3 onclick="toggleStrategy('vermillion')">Vermillion (Electric)</h3>
-<div class="trainer-img" onclick="toggleStrategy('vermillion')"><img src="https://play.pokemonshowdown.com/sprites/trainers/vermillion.png"></div>
-<div class="trainer" onclick="toggleStrategy('vermillion')">
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran (Plume)</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion</p></div>
-</div>
-<div class="strategy" id="vermillion">If Rain lead, swap Heatran ➔ Torkoal.  
-T2: Torkoal ➔ Heatran Finish Heatran (Plume) + Typhlosion</div>
-
-<h3 onclick="toggleStrategy('pewter')">Pewter (Rock)</h3>
-<div class="trainer-img" onclick="toggleStrategy('pewter')"><img src="https://play.pokemonshowdown.com/sprites/trainers/pewter.png"></div>
-<div class="trainer" onclick="toggleStrategy('pewter')">
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif"><p>Blastoise</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif"><p>Archeops</p></div>
-</div>
-<div class="strategy" id="pewter">If Archeops goes down, replace with Heatran.  
-Toxicroak? Swap Blastoise ➔ Heatran (Plume), Archeops may die.  
-T2: Heatran (Plume) + Typhlosion (Plume)</div>
-
-<h3 onclick="toggleStrategy('cerulean')">Cerulean (Water)</h3>
-<div class="trainer-img" onclick="toggleStrategy('cerulean')"><img src="https://play.pokemonshowdown.com/sprites/trainers/cerulean.png"></div>
-<div class="trainer" onclick="toggleStrategy('cerulean')">
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/torkoal.gif"><p>Torkoal</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif"><p>Archeops</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran (Plume)</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion</p></div>
-</div>
-
-<h3 onclick="toggleStrategy('celadon')">Celadon (Grass)</h3>
-<div class="trainer-img" onclick="toggleStrategy('celadon')"><img src="https://play.pokemonshowdown.com/sprites/trainers/celadon.png"></div>
-<div class="trainer" onclick="toggleStrategy('celadon')">
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran</p></div>
-  <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion (Plume)</p></div>
+<div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/vermillion.png"></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif"><p>Heatran (Plume)</p></div>
+<div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif"><p>Typhlosion</p></div>
+<div class="strategy" id="vermillion">Heatran (Plume) + Typhlosion  
+If Rain lead, swap as needed</div>
 </div>
 
 <script>
