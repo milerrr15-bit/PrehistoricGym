@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farm Liga PokeMMO</title>
+    <title>PokeKing Tree - NPC Hezhong</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -13,193 +13,231 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        :root {
+            --primary: #e3350d;
+            --secondary: #ffcb05;
+            --dark-blue: #2a75bb;
+            --light-blue: #3b94e8;
+            --background: #f5f5f5;
+            --card-bg: #ffffff;
+            --text: #212121;
+            --text-light: #666;
+            --border: #e0e0e0;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
         body {
-            background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
-            color: #fff;
+            background-color: var(--background);
+            color: var(--text);
             min-height: 100vh;
-            padding: 20px;
+            line-height: 1.6;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
         }
 
         header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark-blue) 100%);
+            color: white;
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
         }
 
-        h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            color: #ffcb05;
-            text-shadow: 3px 3px 0 #356abc, -1px -1px 0 #356abc, 1px -1px 0 #356abc, -1px 1px 0 #356abc;
-        }
-
-        .subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 30px;
-            color: #f5f5f5;
-        }
-
-        .content {
+        .header-content {
             display: flex;
-            gap: 30px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            color: var(--secondary);
+            text-shadow: 2px 2px 0 var(--dark-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .breadcrumb {
+            background: var(--card-bg);
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
             flex-wrap: wrap;
         }
 
-        .regions {
-            flex: 1;
-            min-width: 300px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
+        .breadcrumb a {
+            color: var(--dark-blue);
+            text-decoration: none;
         }
 
-        .leaders {
-            flex: 2;
-            min-width: 300px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
+        .breadcrumb i {
+            color: #aaa;
+            font-size: 12px;
         }
 
-        .pokemon {
-            flex: 3;
-            min-width: 300px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-        }
-
-        h2 {
-            font-size: 1.8rem;
+        .page-title {
+            font-size: 28px;
+            color: var(--primary);
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #ffcb05;
-            color: #ffcb05;
+            border-bottom: 2px solid var(--secondary);
         }
 
-        .region-list {
-            list-style: none;
-        }
-
-        .region-item {
-            padding: 15px;
-            margin-bottom: 10px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .region-item:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateX(5px);
-        }
-
-        .region-item.active {
-            background: rgba(255, 203, 5, 0.3);
-            border-left: 5px solid #ffcb05;
-        }
-
-        .region-icon {
-            width: 30px;
-            height: 30px;
-            background: #356abc;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .leaders-grid {
+        .npc-info {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
-        .leader-card {
-            background: rgba(255, 255, 255, 0.15);
+        @media (max-width: 768px) {
+            .npc-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .npc-card {
+            background: var(--card-bg);
             border-radius: 10px;
-            padding: 15px;
+            padding: 20px;
+            box-shadow: var(--shadow);
             text-align: center;
-            transition: all 0.3s;
-            cursor: pointer;
         }
 
-        .leader-card:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-5px);
-        }
-
-        .leader-card.active {
-            background: rgba(255, 203, 5, 0.3);
-            box-shadow: 0 5px 15px rgba(255, 203, 5, 0.4);
-        }
-
-        .leader-image {
-            width: 80px;
-            height: 80px;
+        .npc-image {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            margin: 0 auto 10px;
-            background: #4a6491;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--dark-blue) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            border: 3px solid #ffcb05;
+            border: 4px solid var(--secondary);
         }
 
-        .leader-image img {
+        .npc-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .pokemon-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 15px;
+        .npc-name {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--dark-blue);
+            margin-bottom: 5px;
         }
 
-        .pokemon-card {
-            background: rgba(255, 255, 255, 0.15);
+        .npc-role {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .npc-details {
+            background: var(--card-bg);
             border-radius: 10px;
-            padding: 15px 10px;
-            text-align: center;
-            transition: all 0.3s;
-            cursor: pointer;
+            padding: 20px;
+            box-shadow: var(--shadow);
         }
 
-        .pokemon-card:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-5px);
+        .detail-section {
+            margin-bottom: 20px;
+        }
+
+        .detail-section h3 {
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-item {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .detail-label {
+            flex: 1;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .detail-value {
+            flex: 2;
+        }
+
+        .pokemon-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .pokemon-item {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .pokemon-item:hover {
+            background: #f0f8ff;
+            transform: translateY(-3px);
+            box-shadow: var(--hover-shadow);
         }
 
         .pokemon-image {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 10px;
-            background: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
+            background: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            border: 2px solid #fff;
+            border: 2px solid var(--border);
         }
 
         .pokemon-image img {
@@ -208,254 +246,349 @@
             object-fit: cover;
         }
 
-        .divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #ffcb05, transparent);
-            margin: 25px 0;
+        .pokemon-info {
+            flex: 1;
         }
 
-        @media (max-width: 768px) {
-            .content {
+        .pokemon-name {
+            font-weight: 500;
+            color: var(--dark-blue);
+        }
+
+        .pokemon-type {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .type-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: bold;
+            color: white;
+            margin-right: 5px;
+        }
+
+        .rewards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .reward-item {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s;
+        }
+
+        .reward-item:hover {
+            background: #fff8e1;
+            transform: translateY(-3px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .reward-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            font-size: 18px;
+        }
+
+        .reward-info {
+            flex: 1;
+        }
+
+        .reward-name {
+            font-weight: 500;
+            color: var(--dark-blue);
+        }
+
+        .reward-amount {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .strategy-section {
+            margin-top: 30px;
+        }
+
+        .strategy-content {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            line-height: 1.8;
+        }
+
+        .strategy-content p {
+            margin-bottom: 15px;
+        }
+
+        .tip-box {
+            background: #e3f2fd;
+            border-left: 4px solid var(--light-blue);
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: var(--text-light);
+            font-size: 14px;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 900px) {
+            .header-content {
                 flex-direction: column;
+                gap: 15px;
             }
             
-            h1 {
-                font-size: 2.2rem;
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
-            .subtitle {
-                font-size: 1.2rem;
+            .pokemon-list, .rewards {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .breadcrumb {
+                font-size: 12px;
+            }
+            
+            .page-title {
+                font-size: 24px;
+            }
+            
+            .npc-image {
+                width: 120px;
+                height: 120px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Farm Liga PokeMMO</h1>
-            <p class="subtitle">Selecciona una región para ver los líderes</p>
-        </header>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZjYjA1IiBkPSJNNzggMjVWNWE1MCA1MCAwIDExMTAwIDB2MjBhNDUgNDUgMCAxMS05MCAwVjE1YTM1IDM1IDAgMTA3MCAwdjEwYTQ1IDQ1IDAgMTEtOTAgMHoiLz48cGF0aCBmaWxsPSIjMmE3NWJiIiBkPSJNNzggMjVWNWE1MCA1MCAwIDExMTAwIDB2MjBhNDUgNDUgMCAxMS05MCAwVjE1YTM1IDM1IDAgMTA3MCAwdjEwYTQ1IDQ1IDAgMTEtOTAgMHoiLz48cGF0aCBmaWxsPSIjZTczNTBkIiBkPSJNNDA4IDQ4N2E1IDUgMCAwMS01IDVIMTA5YTUgNSAwIDAxLTUtNVYyNTVhNSA1IDAgMDE1LTVoMjk0YTUgNSAwIDAxNSA1djIzMnoiLz48cGF0aCBmaWxsPSIjZjVmNWY1IiBkPSJNNDAzIDI1MHYyMzBINTAyVjI1MGE1IDUgMCAwMC01LTVoLTk0eiIvPjxjaXJjbGUgY3g9IjI1NiIgY3k9IjE4MCIgcj0iNzAiIGZpbGw9IiNmZmNiMDUiLz48Y2lyY2xlIGN4PSIyNTYiIGN5PSIxODAiIHI9IjUwIiBmaWxsPSIjMmE3NWJiIi8+PHBhdGggZmlsbD0iI2Y1ZjVmNSIgZD0iTTM1NiAzMzBIMTU2Yy0xNi41IDAtMzAgMTMuNS0zMCAzMHMxMy41IDMwIDMwIDMwaDIwMGMxNi41IDAgMzAtMTMuNSAzMC0zMHMtMTMuNS0zMC0zMC0zMHoiLz48L3N2Zz4=" alt="Pokéball">
+                    <h1>PokeKing Tree</h1>
+                </div>
+                <nav class="nav-links">
+                    <a href="#">Inicio</a>
+                    <a href="#">Pokédex</a>
+                    <a href="#">Guías</a>
+                    <a href="#">Ligas</a>
+                    <a href="#">Eventos</a>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-        <div class="content">
-            <div class="regions">
-                <h2>Regiones</h2>
-                <ul class="region-list">
-                    <li class="region-item active">
-                        <div class="region-icon"><i class="fas fa-star"></i></div>
-                        <div class="region-name">Tips</div>
-                    </li>
-                    <li class="region-item">
-                        <div class="region-icon">K</div>
-                        <div class="region-name">Kanto</div>
-                    </li>
-                    <li class="region-item">
-                        <div class="region-icon">J</div>
-                        <div class="region-name">Jolito</div>
-                    </li>
-                    <li class="region-item">
-                        <div class="region-icon">H</div>
-                        <div class="region-name">Hoem</div>
-                    </li>
-                    <li class="region-item">
-                        <div class="region-icon">S</div>
-                        <div class="region-name">Simoh</div>
-                    </li>
-                    <li class="region-item">
-                        <div class="region-icon">T</div>
-                        <div class="region-name">Tesella</div>
-                    </li>
-                </ul>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">Inicio</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="#">Tree</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="#">NPC</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>HEZHONG</span>
+        </div>
+
+        <h1 class="page-title">NPC Hezhong - Líder de Gimnasio</h1>
+
+        <div class="npc-info">
+            <div class="npc-card">
+                <div class="npc-image">
+                    <img src="https://archives.bulbagarden.net/media/upload/thumb/3/3a/VSMarlon.png/200px-VSMarlon.png" alt="Hezhong">
+                </div>
+                <h2 class="npc-name">Hezhong</h2>
+                <p class="npc-role">Líder de Gimnasio de Agua</p>
+                <p><strong>Región:</strong> Teselia</p>
+                <p><strong>Ubicación:</strong> Ciudad Gaviota</p>
+                <p><strong>Medalla:</strong> Medalla Ola</p>
             </div>
 
-            <div class="leaders">
-                <h2>Líderes</h2>
-                <div class="leaders-grid">
-                    <div class="leader-card active">
-                        <div class="leader-image">
-                            <img src="https://archives.bulbagarden.net/media/upload/5/53/Lorelei_OS_2.png" alt="Lorelei">
-                        </div>
-                        <div class="leader-name">Lorelei</div>
+            <div class="npc-details">
+                <div class="detail-section">
+                    <h3>Información de Batalla</h3>
+                    <div class="detail-item">
+                        <div class="detail-label">Nivel:</div>
+                        <div class="detail-value">45 - 50</div>
                     </div>
-                    <div class="leader-card">
-                        <div class="leader-image">
-                            <img src="https://archives.bulbagarden.net/media/upload/0/09/Bruno_OS_2.png" alt="Bruno">
+                    <div class="detail-item">
+                        <div class="detail-label">Tipo:</div>
+                        <div class="detail-value">
+                            <span class="type-badge" style="background: #6890F0">Agua</span>
                         </div>
-                        <div class="leader-name">Bruno</div>
                     </div>
-                    <div class="leader-card">
-                        <div class="leader-image">
-                            <img src="https://archives.bulbagarden.net/media/upload/6/6b/Agatha_OS_2.png" alt="Agatha">
-                        </div>
-                        <div class="leader-name">Agatha</div>
+                    <div class="detail-item">
+                        <div class="detail-label">Dificultad:</div>
+                        <div class="detail-value">Media-Alta</div>
                     </div>
-                    <div class="leader-card">
-                        <div class="leader-image">
-                            <img src="https://archives.bulbagarden.net/media/upload/2/2d/Lance_OS_2.png" alt="Lance">
-                        </div>
-                        <div class="leader-name">Lance</div>
-                    </div>
-                    <div class="leader-card">
-                        <div class="leader-image">
-                            <img src="https://archives.bulbagarden.net/media/upload/3/3f/Blue_OS_2.png" alt="Blue">
-                        </div>
-                        <div class="leader-name">Blue</div>
+                    <div class="detail-item">
+                        <div class="detail-label">Recompensa:</div>
+                        <div class="detail-value">$5500</div>
                     </div>
                 </div>
 
-                <div class="divider"></div>
-
-                <h2>Pokémon de Lorelei</h2>
-                <div class="pokemon-grid">
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/144.png" alt="Articuno">
+                <div class="detail-section">
+                    <h3>Pokémon del Equipo</h3>
+                    <div class="pokemon-list">
+                        <div class="pokemon-item">
+                            <div class="pokemon-image">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/99.png" alt="Kingler">
+                            </div>
+                            <div class="pokemon-info">
+                                <div class="pokemon-name">Kingler</div>
+                                <div class="pokemon-type">Nv. 48 | 
+                                    <span class="type-badge" style="background: #6890F0">Agua</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="pokemon-name">Articuno</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/438.png" alt="Bonsly">
+                        <div class="pokemon-item">
+                            <div class="pokemon-image">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/91.png" alt="Cloyster">
+                            </div>
+                            <div class="pokemon-info">
+                                <div class="pokemon-name">Cloyster</div>
+                                <div class="pokemon-type">Nv. 48 | 
+                                    <span class="type-badge" style="background: #6890F0">Agua</span>
+                                    <span class="type-badge" style="background: #98D8D8">Hielo</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="pokemon-name">Bromong</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/390.png" alt="Chimchar">
+                        <div class="pokemon-item">
+                            <div class="pokemon-image">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png" alt="Lapras">
+                            </div>
+                            <div class="pokemon-info">
+                                <div class="pokemon-name">Lapras</div>
+                                <div class="pokemon-type">Nv. 49 | 
+                                    <span class="type-badge" style="background: #6890F0">Agua</span>
+                                    <span class="type-badge" style="background: #98D8D8">Hielo</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="pokemon-name">Chamey</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/344.png" alt="Claydol">
+                        <div class="pokemon-item">
+                            <div class="pokemon-image">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png" alt="Kingdra">
+                            </div>
+                            <div class="pokemon-info">
+                                <div class="pokemon-name">Kingdra</div>
+                                <div class="pokemon-type">Nv. 50 | 
+                                    <span class="type-badge" style="background: #6890F0">Agua</span>
+                                    <span class="type-badge" style="background: #7038F8">Dragón</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="pokemon-name">Claydel</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png" alt="Dragonite">
-                        </div>
-                        <div class="pokemon-name">Dragonite</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/103.png" alt="Exeggutor">
-                        </div>
-                        <div class="pokemon-name">Exegsutor</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/55.png" alt="Golduck">
-                        </div>
-                        <div class="pokemon-name">Golduck</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/623.png" alt="Golurk">
-                        </div>
-                        <div class="pokemon-name">Golurk</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/297.png" alt="Hariyama">
-                        </div>
-                        <div class="pokemon-name">Hariyama</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png" alt="Jynx">
-                        </div>
-                        <div class="pokemon-name">Jynx</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png" alt="Lapras">
-                        </div>
-                        <div class="pokemon-name">Lapras</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/448.png" alt="Lucario">
-                        </div>
-                        <div class="pokemon-name">Lucario</div>
                     </div>
                 </div>
 
-                <div class="divider"></div>
-
-                <div class="pokemon-grid">
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/462.png" alt="Magnezone">
+                <div class="detail-section">
+                    <h3>Recompensas</h3>
+                    <div class="rewards">
+                        <div class="reward-item">
+                            <div class="reward-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="reward-info">
+                                <div class="reward-name">Medalla Ola</div>
+                                <div class="reward-amount">x1</div>
+                            </div>
                         </div>
-                        <div class="pokemon-name">Magnezone</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/226.png" alt="Mantine">
+                        <div class="reward-item">
+                            <div class="reward-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="reward-info">
+                                <div class="reward-name">Dinero</div>
+                                <div class="reward-amount">$5500</div>
+                            </div>
                         </div>
-                        <div class="pokemon-name">Mantine</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/29.png" alt="Nidoran♀">
+                        <div class="reward-item">
+                            <div class="reward-icon">
+                                <i class="fas fa-box-open"></i>
+                            </div>
+                            <div class="reward-info">
+                                <div class="reward-name">MT55</div>
+                                <div class="reward-amount">Scald</div>
+                            </div>
                         </div>
-                        <div class="pokemon-name">Nidsling</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/31.png" alt="Nidoqueen">
-                        </div>
-                        <div class="pokemon-name">Midoqueen</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png" alt="Raichu">
-                        </div>
-                        <div class="pokemon-name">Raichu</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png" alt="Slowbro">
-                        </div>
-                        <div class="pokemon-name">Slowbro</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/468.png" alt="Togekiss">
-                        </div>
-                        <div class="pokemon-name">Togekiss</div>
-                    </div>
-                    <div class="pokemon-card">
-                        <div class="pokemon-image">
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/663.png" alt="Talonflame">
-                        </div>
-                        <div class="pokemon-name">Vliepiume</div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="strategy-section">
+            <h3>Estrategia de Batalla</h3>
+            <div class="strategy-content">
+                <p>Hezhong es un líder de gimnasio especializado en Pokémon de tipo Agua. Su equipo está bien equilibrado entre defensa y ataque, con Kingdra como su Pokémon más fuerte.</p>
+                
+                <div class="tip-box">
+                    <p><strong>Consejo:</strong> Usa Pokémon de tipo Planta o Eléctrico para obtener ventaja contra su equipo de tipo Agua.</p>
+                </div>
+                
+                <p><strong>Recomendaciones:</strong></p>
+                <ul style="padding-left: 20px; margin-bottom: 15px;">
+                    <li>Jolteon con Trueno o Impactrueno es muy efectivo</li>
+                    <li>Venusaur con Latigazo o Rayo Solar</li>
+                    <li>Electivire con Puño Trueno</li>
+                    <li>Evita usar Pokémon de tipo Fuego, Roca o Tierra</li>
+                </ul>
+                
+                <p>Kingdra es su Pokémon más peligroso ya que solo es débil contra tipo Dragón y Hada. Considera llevar un Pokémon de estos tipos o usar movimientos de estos tipos.</p>
+            </div>
+        </div>
     </div>
 
+    <footer>
+        <div class="container">
+            <p>© 2023 PokeKing Tree - Todos los derechos reservados</p>
+            <p>Este sitio no está afiliado con Pokémon, The Pokémon Company International, Nintendo o Game Freak</p>
+        </div>
+    </footer>
+
     <script>
-        // Interactividad para las regiones
-        const regionItems = document.querySelectorAll('.region-item');
-        regionItems.forEach(item => {
+        // Interactividad para los elementos de Pokémon
+        const pokemonItems = document.querySelectorAll('.pokemon-item');
+        pokemonItems.forEach(item => {
             item.addEventListener('click', () => {
-                regionItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
+                const pokemonName = item.querySelector('.pokemon-name').textContent;
+                alert(`Has seleccionado a ${pokemonName}. ¿Quieres ver más detalles?`);
             });
         });
 
-        // Interactividad para los líderes
-        const leaderCards = document.querySelectorAll('.leader-card');
-        leaderCards.forEach(card => {
-            card.addEventListener('click', () => {
-                leaderCards.forEach(c => c.classList.remove('active'));
-                card.classList.add('active');
-                
-                // Cambiar el título de la sección de Pokémon
-                const leaderName = card.querySelector('.leader-name').textContent;
-                document.querySelector('.leaders h2:nth-child(3)').textContent = `Pokémon de ${leaderName}`;
+        // Efecto de hover para las recompensas
+        const rewardItems = document.querySelectorAll('.reward-item');
+        rewardItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translateY(-5px)';
+                item.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateY(0)';
+                item.style.boxShadow = 'none';
             });
         });
     </script>
