@@ -1,178 +1,461 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PokéMMO • Gym Rerun (Aleatorios)</title>
-  <style>
-    :root{--bg:#070707;--panel:#111;--muted:#9aa0a6;--accent:#ffcc00;--line:#222}
-    *{box-sizing:border-box}
-    body{font-family:Arial,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",sans-serif;background:var(--bg);color:#eee;margin:0}
-    header{padding:20px;text-align:center;border-bottom:1px solid var(--line)}
-    h1{margin:0;color:var(--accent)}
-    .wrap{max-width:1100px;margin:18px auto;padding:18px}
-    .tools{display:flex;gap:10px;margin-bottom:12px}
-    input.search{flex:1;padding:10px;border-radius:10px;border:1px solid var(--line);background:#0f0f0f;color:#eee}
-    .btn{padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#121212;color:#eee;cursor:pointer}
-    .hint{font-size:13px;color:var(--muted);margin-top:6px;text-align:center}
-
-    .region{background:#0f0f0f;border:1px solid var(--line);padding:12px;border-radius:10px;margin-bottom:12px}
-    .region .head{display:flex;align-items:center;gap:10px;cursor:pointer}
-    .tag{font-size:12px;color:var(--muted)}
-
-    ul{list-style:none;padding-left:18px;margin:8px 0}
-    li{display:flex;align-items:center;gap:10px;padding:6px;border-radius:8px}
-    li.leader{cursor:pointer}
-    li.leader:hover, li.pkm:hover{background:#1a1a1a}
-
-    img.icon{width:34px;height:34px;image-rendering:pixelated;border-radius:6px;background:#000}
-    img.icon.pkm{width:28px;height:28px}
-
-    .nested{display:none;margin-left:8px}
-    .active > .nested{display:block}
-
-    #infoBox{margin-top:14px;padding:12px;border-radius:10px;background:#0f0f0f;border:1px solid var(--line);display:none}
-    footer{padding:18px;text-align:center;color:var(--muted);font-size:13px}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PokéMMO Gym Rerun — Rutas (Doc)</title>
+<style>
+  :root{
+    --bg:#070707; --panel:#0f0f0f; --muted:#9aa0a6; --accent:#ffcc00; --line:#222;
+  }
+  *{box-sizing:border-box}
+  body{font-family:Arial,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",sans-serif;background:var(--bg);color:#eee;margin:0}
+  header{padding:20px;text-align:center;border-bottom:1px solid var(--line)}
+  h1{margin:0;color:var(--accent)}
+  .wrap{max-width:1100px;margin:18px auto;padding:18px}
+  .tools{display:flex;gap:10px;margin-bottom:12px}
+  input.search{flex:1;padding:10px;border-radius:10px;border:1px solid var(--line);background:#0f0f0f;color:#eee}
+  .btn{padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#121212;color:#eee;cursor:pointer}
+  .hint{font-size:13px;color:var(--muted);margin-top:6px;text-align:center}
+  .region{background:#0f0f0f;border:1px solid var(--line);padding:12px;border-radius:10px;margin-bottom:12px}
+  .region .head{display:flex;align-items:center;gap:10px;cursor:pointer}
+  .tag{font-size:12px;color:var(--muted)}
+  ul{list-style:none;padding-left:18px;margin:8px 0}
+  li{display:flex;align-items:center;gap:10px;padding:6px;border-radius:8px}
+  li.leader{cursor:pointer}
+  li.leader:hover, li.pkm:hover{background:#1a1a1a}
+  img.icon{width:34px;height:34px;image-rendering:pixelated;border-radius:6px;background:#000}
+  img.icon.pkm{width:28px;height:28px}
+  .nested{display:none;margin-left:8px}
+  .active > .nested{display:block}
+  #infoBox{margin-top:14px;padding:12px;border-radius:10px;background:#0f0f0f;border:1px solid var(--line);display:none}
+  footer{padding:18px;text-align:center;color:var(--muted);font-size:13px}
+  .note{font-size:13px;color:var(--muted);margin:8px 0}
+  .gym-title{font-weight:700}
+  .pc-reset{color:#ffb4b4;font-weight:700}
+</style>
 </head>
 <body>
   <header>
-    <h1>PokéMMO • Gym Rerun — Plantilla con equipos aleatorios</h1>
-    <div class="hint">Cada recarga genera equipos aleatorios (6 pokémon por líder). Luego puedes reemplazar por los reales.</div>
+    <h1>PokéMMO • Gym Rerun — Rutas importadas</h1>
+    <div class="hint">Click: región → gimnasio → pokémon. Click en pokémon para ver la nota. (Sprites: Pokémon Showdown)</div>
   </header>
 
   <div class="wrap">
     <div class="tools">
-      <input id="search" class="search" placeholder="Buscar región, líder o pokémon…" />
-      <button id="refresh" class="btn">Re-generar equipos</button>
+      <input id="search" class="search" placeholder="Buscar región, gimnasio o pokémon…" />
       <button id="expandAll" class="btn">Expandir todo</button>
       <button id="collapseAll" class="btn">Cerrar todo</button>
     </div>
 
+    <div class="note">He integrado las rutas que pegaste. Si quieres que modifique texto/orden lo actualizo.</div>
+
     <div id="treeRoot"></div>
+
     <div id="infoBox"></div>
   </div>
 
-  <footer>Sprites: Pokémon Showdown • Plantilla creada para PokéMMO</footer>
+  <footer>Sprites: Pokémon Showdown • Plantilla generada</footer>
 
-  <script>
-    // Lista de líderes por región (sin teams; se generan aleatorios)
-    const REGIONS = [
-      {region:'Kanto', code:'kanto', leaders:['Brock','Misty','Lt. Surge','Erika','Koga','Sabrina','Blaine','Giovanni']},
-      {region:'Johto', code:'johto', leaders:['Falkner','Bugsy','Whitney','Morty','Chuck','Jasmine','Pryce','Clair']},
-      {region:'Hoenn', code:'hoenn', leaders:['Roxanne','Brawly','Wattson','Flannery','Norman','Winona','Tate & Liza','Wallace']},
-      {region:'Sinnoh', code:'sinnoh', leaders:['Roark','Gardenia','Maylene','Crasher Wake','Fantina','Byron','Candice','Volkner']},
-      {region:'Unova', code:'unova', leaders:['Cilan/Chili/Cress','Lenora','Burgh','Elesa','Clay','Skyla','Brycen','Drayden/Iris']}
-    ];
+<script>
+/* Helper sprites */
+const TRAINER_BASE = 'https://play.pokemonshowdown.com/sprites/trainers/';
+const PKM_BASE = 'https://play.pokemonshowdown.com/sprites/gen5/';
 
-    // Pool de pokémon para seleccionar aleatorio (nombres compatibles con Showdown gen5)
-    const POOL = [
-      'geodude','onix','golem','rhyhorn','kabuto','aerodactyl','starmie','gyarados','vaporeon','jolteon','flareon',
-      'raichu','magneton','vileplume','victreebel','roserade','torterra','lucario','slaking','altaria','milotic',
-      'manectric','metagross','aggron','talonflame','pidgeot','scizor','heracross','miltank','clefable','snorlax',
-      'gengar','mismagius','chandelure','drifblim','hydreigon','haxorus','excadrill','krookodile','seismitoad','mamoswine',
-      'braviary','swanna','swellow','archeops','rotom','rotom-wash','rotom-heat','rotom-fan','rotom-frost','rotom-mow',
-      'togekiss','blaziken','sceptile','swampert','sliggoo','goodra','greninja','tyranitar','scrafty','umbreon',
-      'espeon','glaceon','leafeon','vulpix','ninetales','charizard','blastoise','venusaur','alakazam','metagross'
-    ];
+function slugify(name){
+  return String(name).toLowerCase().replace(/[^a-z0-9-\\.]/g, '');
+}
+function trainerUrl(name){
+  // expect trainer file like flannery.png, wattson.png...
+  return TRAINER_BASE + (String(name).toLowerCase().replace(/[^a-z0-9-\\.]/g,'') || 'unknown') + '.png';
+}
+function pkmUrl(name){
+  return PKM_BASE + (name.endsWith('.png') ? name : slugify(name) + '.png');
+}
+function createImg(src, alt, cls=''){
+  const img = document.createElement('img');
+  img.src = src; img.alt = alt; img.className = 'icon ' + cls;
+  img.onerror = ()=>{ img.src = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><rect width='32' height='32' fill='%23000'/><text x='16' y='20' font-size='12' text-anchor='middle' fill='%23fff'>?</text></svg>`; };
+  return img;
+}
 
-    const TRAINER_BASE = 'https://play.pokemonshowdown.com/sprites/trainers/';
-    const PKM_BASE = 'https://play.pokemonshowdown.com/sprites/gen5/';
+/* DATA: solo los gyms que pegaste, con Pokémon y notas EXACTAS */
+const DATA = [
+  {
+    region: 'Hoenn',
+    code: 'hoenn',
+    leaders: [
+      {
+        name: 'Lavaridge (Fire)',
+        trainer: 'flannery.png',
+        team: [
+          {p:'archeops', note:'Archeops + Blastoise (doc)'},
+          {p:'blastoise', note:'Archeops + Blastoise (doc)'}
+        ]
+      },
+      {
+        name: 'Mauville (Electric)',
+        trainer: 'wattson.png',
+        team: [
+          {p:'archeops', note:'Archeops + Heatran (doc)'},
+          {p:'heatran', note:'Archeops + Heatran (doc)'}
+        ]
+      },
+      {
+        name: 'Fortree (Flying)',
+        trainer: 'winona.png',
+        team: [
+          {p:'archeops', note:'Archeops + Typhlosion (doc)'},
+          {p:'typhlosion', note:'Archeops + Typhlosion (doc)'},
+        ],
+        extra: [
+          'If Rain [Si Llueve]',
+          'T1: Swap Archeops ➔ Torkoal',
+          'T2: Swap Torkoal ➔ Archeops',
+          'Chance of Archeops going down, continue if so.',
+          'If Torkoal paralyzed from Thunder, use Paralyze Heal after gym or PC Heal'
+        ]
+      },
+      {
+        name: 'Dewford (Fighting)',
+        trainer: 'brawly.png',
+        team: [
+          {p:'heatran', note:'Heatran + Blastoise (doc)'},
+          {p:'blastoise', note:'Heatran + Blastoise (doc)'}
+        ]
+      },
+      {
+        name: 'Petalburg (Normal)',
+        trainer: 'norman.png',
+        team: [
+          {p:'torkoal', note:'Torkoal + Blastoise into Heatran (Plume) + Typhlosion (doc)'},
+          {p:'blastoise', note:'Torkoal + Blastoise into Heatran (Plume) + Typhlosion (doc)'},
+          {p:'heatran', note:'then Heatran (Plume)'},
+          {p:'typhlosion', note:'then Typhlosion'}
+        ]
+      },
+      { name: 'PC RESET', team: [], note:'~49 mins on charm', pc:true }
+    ]
+  },
 
-    function slugify(name){
-      // Keep dots for forms like mr.mime, rotom-wash already with dash handled in POOL
-      return name.toLowerCase().replace(/[^a-z0-9-\.]/g,'');
-    }
+  {
+    region: 'Unova',
+    code: 'unova',
+    leaders: [
+      {
+        name: 'Castelia (Bug)',
+        trainer: 'burgh.png',
+        team: [
+          {p:'blastoise', note:'Blastoise + Heatran (doc)'},
+          {p:'heatran', note:'Blastoise + Heatran (doc)'}
+        ],
+        extra: ['If hurt from Accelgor team, heal here.']
+      },
+      {
+        name: 'Nimbasa (Electric)',
+        trainer: 'elesa.png',
+        team:[
+          {p:'blastoise', note:'Blastoise + Heatran (doc)'},
+          {p:'heatran', note:'Blastoise + Heatran (doc)'},
+        ],
+        extra:['Chance at Heatran getting hurt. Continue if so.']
+      },
+      {
+        name: 'Driftveil (Ground)',
+        trainer: 'clay.png',
+        team:[
+          {p:'torkoal', note:'Torkoal + Archeops into Heatran (Plume) + Typhlosion (doc)'},
+          {p:'archeops', note:'Torkoal + Archeops into Heatran (Plume) + Typhlosion (doc)'},
+          {p:'heatran', note:'Heatran (Plume)'},
+          {p:'typhlosion', note:'Typhlosion'}
+        ]
+      },
+      { name: 'PC RESET', team: [], note:'~42 mins on charm', pc:true },
 
-    function createImg(src, alt, cls=''){
-      const img = document.createElement('img');
-      img.src = src; img.alt = alt; img.className = 'icon ' + cls;
-      img.onerror = ()=>{ img.src = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><rect width='32' height='32' fill='%23000'/><text x='16' y='20' font-size='12' text-anchor='middle' fill='%23fff'>?</text></svg>` };
-      return img;
-    }
+      {
+        name: 'Striaton (Type routes)',
+        trainer: 'cilan.png',
+        team: [
+          {p:'blastoise', note:'Fire: Blastoise + Archeops (doc)'},
+          {p:'archeops', note:'Fire: Blastoise + Archeops (doc)'},
+          {p:'heatran', note:'Grass: Heatran + Typhlosion (Plume) (doc)'},
+          {p:'typhlosion', note:'Grass: Heatran + Typhlosion (Plume) (doc)'},
+          {p:'torkoal', note:'Water: Torkoal + Archeops into Heatran (Plume) + Typhlosion (doc)'}
+        ],
+        extra:[
+          'If Blastoise is hurt from fire leader, PC Reset'
+        ]
+      },
 
-    function pkmUrl(name){ return PKM_BASE + (name.endsWith('.png')?name:slugify(name)+'.png'); }
-    function trainerUrl(name){ return TRAINER_BASE + (name.toLowerCase().replace(/[^a-z0-9-\.]/g,'') || 'unknown') + '.png'; }
+      {
+        name: 'Mistralton (Flying)',
+        trainer: 'skyla.png',
+        team:[
+          {p:'blastoise', note:'Blastoise + Heatran (doc)'},
+          {p:'heatran', note:'Blastoise + Heatran (doc)'}
+        ],
+        extra:[
+          'Chance at getting eject buttoned, just attack through.',
+          'If Heatran or Typhlosion dies from this, PC Reset then continue and skip next PC Reset'
+        ]
+      },
 
-    // Genera N elementos aleatorios sin repetir
-    function pickRandom(pool, n){
-      const copy = pool.slice();
-      const out = [];
-      for(let i=0;i<n && copy.length;i++){
-        const idx = Math.floor(Math.random()*copy.length);
-        out.push(copy.splice(idx,1)[0]);
+      {
+        name: 'Icirrus (Ice)',
+        trainer: 'brycen.png',
+        team:[
+          {p:'typhlosion', note:'Typhlosion (Plume) + Heatran (Plume) (doc)'},
+          {p:'heatran', note:'Typhlosion (Plume) + Heatran (Plume) (doc)'}
+        ],
+        extra:['If Frozen from Blizzard, use Ice Heal on frozen one’s turn']
+      },
+
+      { name: 'PC RESET', team: [], note:'~32 mins on charm', pc:true },
+
+      {
+        name: 'Opelucid (Dragon)',
+        trainer: 'drayden.png',
+        team:[
+          {p:'torkoal', note:'Torkoal + Archeops (Tailwind) into Typhlosion + Heatran (Plume) (doc)'},
+          {p:'archeops', note:'Torkoal + Archeops (Tailwind) into Typhlosion + Heatran (Plume) (doc)'},
+          {p:'typhlosion', note:'Typhlosion'},
+          {p:'heatran', note:'Heatran (Plume)'}
+        ]
       }
-      return out;
-    }
+    ]
+  },
 
-    // Render
-    const root = document.getElementById('treeRoot');
+  {
+    region: 'Johto',
+    code: 'johto',
+    leaders: [
+      {
+        name: 'Violet (Flying)',
+        trainer: 'falkner.png',
+        team:[
+          {p:'heatran', note:'Heatran + Blastoise (doc)'},
+          {p:'blastoise', note:'Heatran + Blastoise (doc)'}
+        ],
+        extra:['Chance at Heatran and Blastoise getting hurt. Continue if so.']
+      },
+      {
+        name: 'Mahogany (Ice)',
+        trainer: 'pryce.png',
+        team:[
+          {p:'heatran', note:'Heatran (Plume) + Typhlosion (doc)'},
+          {p:'typhlosion', note:'Heatran (Plume) + Typhlosion (doc)'}
+        ],
+        extra:['If Frozen from Blizzard, use Ice Heal on frozen one’s turn']
+      },
+      { name: 'PC RESET', team: [], note:'~26 mins on charm', pc:true },
 
-    function buildTree(){
-      root.innerHTML = '';
-      REGIONS.forEach(region=>{
-        const box = document.createElement('div'); box.className='region';
-        const head = document.createElement('div'); head.className='head';
-        head.addEventListener('click', e=>{ head.parentElement.classList.toggle('active'); e.stopPropagation(); });
-        const img = createImg(`https://play.pokemonshowdown.com/sprites/trainers/${region.code}.png`, region.region);
-        head.appendChild(img);
-        const title = document.createElement('div'); title.innerHTML = `<strong>${region.region}</strong> <span class='tag'>${region.leaders.length} líderes</span>`;
-        head.appendChild(title);
-        box.appendChild(head);
+      {
+        name: 'Goldenrod (Normal)',
+        trainer: 'whitney.png',
+        team:[
+          {p:'blastoise', note:'Blastoise + Heatran (doc) — Put Blastoise on left side (above Heatran in team order)'},
+          {p:'heatran', note:'Chance at Heatran getting hurt. Continue if so.'}
+        ]
+      },
 
-        const leadersUl = document.createElement('ul'); leadersUl.className='nested';
+      {
+        name: 'Azalea (Bug)',
+        trainer: 'bugsy.png',
+        team:[
+          {p:'typhlosion', note:'Typhlosion (Plume) + Heatran (doc)'},
+          {p:'heatran', note:'If Sand [Arena] appears: Swap Typhlosion ➔ Torkoal, then Swap Torkoal ➔ Typhlosion (Plume)'}
+        ]
+      },
 
-        region.leaders.forEach(ldr=>{
-          const leaderLi = document.createElement('li'); leaderLi.className='leader';
-          leaderLi.addEventListener('click', e=>{ leaderLi.classList.toggle('active'); e.stopPropagation(); });
+      {
+        name: 'Cianwood (Fighting)',
+        trainer: 'chuck.png',
+        team:[
+          {p:'torkoal', note:'Torkoal + Blastoise into Heatran (Plume) + Typhlosion (doc)'},
+          {p:'blastoise', note:'Turn 1 rock slide flinches can be annoying here. Skip if preferred.'}
+        ]
+      },
 
-          const limg = createImg(trainerUrl(ldr), ldr);
-          leaderLi.appendChild(limg);
-          leaderLi.appendChild(document.createTextNode(' ' + ldr));
+      {
+        name: 'Olivine (Steel)',
+        trainer: 'jasmine.png',
+        team:[
+          {p:'archeops', note:'Archeops + Typhlosion (doc)'},
+          {p:'typhlosion', note:'If Archeops goes down replace Heatran; Earth Power vs Corsola/Rapidash; Eruption vs Blastoise Team'}
+        ]
+      },
 
-          // team random
-          const team = pickRandom(POOL,6);
-          const teamUl = document.createElement('ul'); teamUl.className='nested';
-          team.forEach(mon=>{
-            const monLi = document.createElement('li'); monLi.className='pkm';
-            monLi.addEventListener('click', e=>{ showInfo(mon, 'Estrategia placeholder: ajusta según Gym Rerun'); e.stopPropagation(); });
-            const mimg = createImg(pkmUrl(mon), mon, 'pkm');
-            monLi.appendChild(mimg);
-            monLi.appendChild(document.createTextNode(' ' + mon));
-            teamUl.appendChild(monLi);
-          });
+      { name: 'PC RESET', team: [], note:'~18 mins on charm', pc:true }
+    ]
+  },
 
-          leaderLi.appendChild(teamUl);
-          leadersUl.appendChild(leaderLi);
+  {
+    region: 'Sinnoh',
+    code: 'sinnoh',
+    leaders: [
+      {
+        name: 'Veilstone (Fighting)',
+        trainer: 'maylene.png',
+        team:[
+          {p:'archeops', note:'Archeops + Typhlosion (doc)'},
+          {p:'typhlosion', note:'Chance at Archeops getting hurt. Continue if so, or heal if you want to be safe or if KO’d'}
+        ]
+      },
+      {
+        name: 'Eterna (Grass)',
+        trainer: 'gardenia.png',
+        team:[
+          {p:'archeops', note:'Archeops + Heatran (doc)'},
+          {p:'heatran', note:'If Archeops is less than 50%, heal after. Replace Typhlosion if needed.'}
+        ]
+      },
+      {
+        name: 'Sunyshore (Electric)',
+        trainer: 'volkner.png',
+        team:[
+          {p:'archeops', note:'Archeops + Blastoise (doc)'},
+          {p:'blastoise', note:'If Lanturn lead: T1 swap Blastoise ➔ Torkoal; If Archeops dies (Thunder), replace with Blastoise; T2 Explosion; T3 Typhlosion + Heatran (Plume). Skip next gym if this happens or heal and do it if you have time.'}
+        ]
+      },
+      {
+        name: 'Pastoria (Water)',
+        trainer: 'crasherwake.png',
+        team:[
+          {p:'torkoal', note:'Torkoal + Archeops into Heatran (Plume) + Typhlosion (doc)'},
+          {p:'archeops', note:'Archeops (support)'}
+        ]
+      }
+    ]
+  },
+
+  {
+    region: 'Kanto',
+    code: 'kanto',
+    leaders: [
+      { name: 'PC RESET', team: [], note:'~10 mins on charm', pc:true },
+
+      {
+        name: 'Vermillion (Electric)',
+        trainer: 'lt.surge.png',
+        team:[
+          {p:'heatran', note:'Heatran (Plume) + Typhlosion (doc)'},
+          {p:'typhlosion', note:'If Rain lead: T1 Swap Heatran ➔ Torkoal; T2 Torkoal ➔ Heatran; Finish Heatran (Plume) + Typhlosion'}
+        ]
+      },
+      {
+        name: 'Pewter (Rock)',
+        trainer: 'brock.png',
+        team:[
+          {p:'blastoise', note:'Blastoise + Archeops (doc) — If Archeops goes down, replace with Heatran'},
+          {p:'archeops', note:'If Toxicroak: T1 Swap Blastoise ➔ Heatran (Plume), Archeops may die; T2 Heatran (Plume) + Typhlosion (Plume)'}
+        ]
+      },
+      {
+        name: 'Cerulean (Water)',
+        trainer: 'misty.png',
+        team:[
+          {p:'torkoal', note:'Torkoal + Archeops or Blastoise into Heatran (Plume) + Typhlosion (doc)'},
+          {p:'archeops', note:'Archeops / Blastoise option'}
+        ]
+      },
+      {
+        name: 'Celadon (Grass)',
+        trainer: 'erika.png',
+        team:[
+          {p:'heatran', note:'Heatran + Typhlosion (Plume) (doc)'},
+          {p:'typhlosion', note:'Heatran + Typhlosion (Plume) (doc)'}
+        ]
+      }
+
+    ]
+  }
+];
+
+/* render */
+const root = document.getElementById('treeRoot');
+
+function build(){
+  root.innerHTML = '';
+  DATA.forEach(region=>{
+    const box = document.createElement('div'); box.className='region';
+    const head = document.createElement('div'); head.className='head';
+    head.addEventListener('click', e=>{ box.classList.toggle('active'); e.stopPropagation(); });
+    const rimg = createImg(trainerUrl(region.code), region.region);
+    head.appendChild(rimg);
+    const title = document.createElement('div');
+    title.innerHTML = `<strong>${region.region}</strong> <span class='tag'>${region.leaders.length} entradas</span>`;
+    head.appendChild(title);
+    box.appendChild(head);
+
+    const ul = document.createElement('ul'); ul.className='nested';
+    region.leaders.forEach(ldr=>{
+      const li = document.createElement('li'); li.className='leader';
+      li.addEventListener('click', e=>{ li.classList.toggle('active'); e.stopPropagation(); });
+
+      // trainer image (try to map trainer file; if not found, trainerUrl will fallback placeholder)
+      // use trainer name if it's a known trainer file like 'flannery.png', else pass name
+      const tname = (ldr.trainer ? ldr.trainer : ldr.name);
+      const timg = createImg(trainerUrl(tname), ldr.name);
+      li.appendChild(timg);
+      const txt = document.createTextNode(' ' + ldr.name);
+      li.appendChild(txt);
+
+      // team list
+      const teamUl = document.createElement('ul'); teamUl.className='nested';
+      if(ldr.team && ldr.team.length){
+        ldr.team.forEach(m=>{
+          const mli = document.createElement('li'); mli.className='pkm';
+          mli.addEventListener('click', e=>{ showInfo(m.p, m.note||''); e.stopPropagation(); });
+          const mimg = createImg(pkmUrl(m.p), m.p, 'pkm');
+          mli.appendChild(mimg);
+          mli.appendChild(document.createTextNode(' ' + m.p));
+          teamUl.appendChild(mli);
         });
-
-        box.appendChild(leadersUl);
-        root.appendChild(box);
-      });
-    }
-
-    function showInfo(pokemon, texto){
-      const box = document.getElementById('infoBox');
-      box.innerHTML = `<b>${pokemon}</b>: ${texto}`; box.style.display='block';
-    }
-
-    // Events
-    document.getElementById('refresh').addEventListener('click', ()=>{ buildTree(); });
-    document.getElementById('expandAll').addEventListener('click', ()=>{ document.querySelectorAll('.region').forEach(r=>r.classList.add('active')); document.querySelectorAll('.nested').forEach(n=>n.style.display='block'); });
-    document.getElementById('collapseAll').addEventListener('click', ()=>{ document.querySelectorAll('.region').forEach(r=>r.classList.remove('active')); document.querySelectorAll('.nested').forEach(n=>n.style.display='none'); document.getElementById('infoBox').style.display='none'; });
-
-    // Search
-    document.getElementById('search').addEventListener('input', function(){
-      const q = this.value.trim().toLowerCase();
-      if(!q){ document.querySelectorAll('.region').forEach(r=>r.style.display='block'); return; }
-      document.querySelectorAll('.region').forEach(r=>{
-        const text = r.textContent.toLowerCase();
-        r.style.display = text.includes(q)?'block':'none';
-      });
+      }
+      // extras and notes
+      if(ldr.extra && ldr.extra.length){
+        ldr.extra.forEach(x=>{
+          const noteLi = document.createElement('li');
+          noteLi.style.flexDirection = 'column';
+          noteLi.style.gap = '2px';
+          noteLi.innerHTML = `<small style="color:var(--muted)">${x}</small>`;
+          teamUl.appendChild(noteLi);
+        });
+      }
+      if(ldr.note){
+        const noteLi = document.createElement('li');
+        noteLi.style.flexDirection = 'column';
+        noteLi.style.gap = '2px';
+        noteLi.innerHTML = `<small class="pc-reset">${ldr.note}</small>`;
+        teamUl.appendChild(noteLi);
+      }
+      li.appendChild(teamUl);
+      ul.appendChild(li);
     });
 
-    // Init
-    buildTree();
-  </script>
+    box.appendChild(ul);
+    root.appendChild(box);
+  });
+}
+
+function showInfo(pokemon, texto){
+  const box = document.getElementById('infoBox');
+  box.innerHTML = `<b>${pokemon}</b>: ${texto || ''}`;
+  box.style.display = 'block';
+}
+
+/* Search & controls */
+document.getElementById('search').addEventListener('input', function(){
+  const q = this.value.trim().toLowerCase();
+  document.querySelectorAll('.region').forEach(r=>{
+    r.style.display = q ? (r.textContent.toLowerCase().includes(q) ? 'block' : 'none') : 'block';
+  });
+});
+document.getElementById('expandAll').addEventListener('click', ()=>{ document.querySelectorAll('.region').forEach(r=>r.classList.add('active')); document.querySelectorAll('.nested').forEach(n=>n.style.display='block'); });
+document.getElementById('collapseAll').addEventListener('click', ()=>{ document.querySelectorAll('.region').forEach(r=>r.classList.remove('active')); document.querySelectorAll('.nested').forEach(n=>n.style.display='none'); document.getElementById('infoBox').style.display='none'; });
+
+/* init */
+build();
+</script>
 </body>
 </html>
