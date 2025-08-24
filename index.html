@@ -1,621 +1,178 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PokéMMO Gym Rerun Tool</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #e3350d;
-            --secondary: #ffcb05;
-            --dark-blue: #2a75bb;
-            --light-blue: #3b94e8;
-            --background: #f5f5f5;
-            --card-bg: #ffffff;
-            --text: #212121;
-            --text-light: #666;
-            --border: #e0e0e0;
-            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            --hover-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PokéMMO • Gym Rerun (Aleatorios)</title>
+  <style>
+    :root{--bg:#070707;--panel:#111;--muted:#9aa0a6;--accent:#ffcc00;--line:#222}
+    *{box-sizing:border-box}
+    body{font-family:Arial,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",sans-serif;background:var(--bg);color:#eee;margin:0}
+    header{padding:20px;text-align:center;border-bottom:1px solid var(--line)}
+    h1{margin:0;color:var(--accent)}
+    .wrap{max-width:1100px;margin:18px auto;padding:18px}
+    .tools{display:flex;gap:10px;margin-bottom:12px}
+    input.search{flex:1;padding:10px;border-radius:10px;border:1px solid var(--line);background:#0f0f0f;color:#eee}
+    .btn{padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#121212;color:#eee;cursor:pointer}
+    .hint{font-size:13px;color:var(--muted);margin-top:6px;text-align:center}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+    .region{background:#0f0f0f;border:1px solid var(--line);padding:12px;border-radius:10px;margin-bottom:12px}
+    .region .head{display:flex;align-items:center;gap:10px;cursor:pointer}
+    .tag{font-size:12px;color:var(--muted)}
 
-        body {
-            background-color: var(--background);
-            color: var(--text);
-            line-height: 1.6;
-        }
+    ul{list-style:none;padding-left:18px;margin:8px 0}
+    li{display:flex;align-items:center;gap:10px;padding:6px;border-radius:8px}
+    li.leader{cursor:pointer}
+    li.leader:hover, li.pkm:hover{background:#1a1a1a}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    img.icon{width:34px;height:34px;image-rendering:pixelated;border-radius:6px;background:#000}
+    img.icon.pkm{width:28px;height:28px}
 
-        header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--dark-blue) 100%);
-            color: white;
-            padding: 20px 0;
-            box-shadow: var(--shadow);
-            margin-bottom: 30px;
-        }
+    .nested{display:none;margin-left:8px}
+    .active > .nested{display:block}
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo img {
-            height: 50px;
-        }
-
-        .logo h1 {
-            font-size: 24px;
-            color: var(--secondary);
-            text-shadow: 2px 2px 0 var(--dark-blue);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 20px;
-            transition: background 0.3s;
-        }
-
-        .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .page-title {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .page-title h2 {
-            font-size: 32px;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .page-title p {
-            color: var(--text-light);
-            font-size: 18px;
-        }
-
-        .tool-container {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        @media (max-width: 900px) {
-            .tool-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .region-selector {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: var(--shadow);
-        }
-
-        .region-selector h3 {
-            color: var(--dark-blue);
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary);
-        }
-
-        .region-list {
-            list-style: none;
-        }
-
-        .region-item {
-            margin-bottom: 10px;
-        }
-
-        .region-item a {
-            display: block;
-            padding: 12px 15px;
-            background: #f0f8ff;
-            border-radius: 8px;
-            text-decoration: none;
-            color: var(--dark-blue);
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .region-item a:hover {
-            background: var(--light-blue);
-            color: white;
-            transform: translateX(5px);
-        }
-
-        .region-item.active a {
-            background: var(--dark-blue);
-            color: white;
-        }
-
-        .gym-rerun-content {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: var(--shadow);
-        }
-
-        .timer-section {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: linear-gradient(135deg, #f0f8ff 0%, #e3f2fd 100%);
-            border-radius: 10px;
-        }
-
-        .timer-display {
-            font-size: 48px;
-            font-weight: bold;
-            color: var(--primary);
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-        }
-
-        .timer-controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .timer-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .timer-btn.start {
-            background: var(--primary);
-            color: white;
-        }
-
-        .timer-btn.pause {
-            background: var(--secondary);
-            color: var(--text);
-        }
-
-        .timer-btn.reset {
-            background: var(--dark-blue);
-            color: white;
-        }
-
-        .timer-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .gym-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        @media (max-width: 600px) {
-            .gym-info {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .info-card {
-            background: #f9f9f9;
-            border-radius: 10px;
-            padding: 15px;
-        }
-
-        .info-card h4 {
-            color: var(--dark-blue);
-            margin-bottom: 10px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .info-label {
-            font-weight: 500;
-            color: var(--text-light);
-        }
-
-        .info-value {
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .gym-leaders {
-            margin-top: 30px;
-        }
-
-        .gym-leaders h3 {
-            color: var(--dark-blue);
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary);
-        }
-
-        .leaders-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .leader-card {
-            background: #f9f9f9;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .leader-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .leader-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin: 0 auto 10px;
-            background: var(--light-blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 3px solid var(--secondary);
-        }
-
-        .leader-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .leader-name {
-            font-weight: bold;
-            color: var(--dark-blue);
-            margin-bottom: 5px;
-        }
-
-        .leader-type {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 10px;
-        }
-
-        .leader-pokemon {
-            font-size: 12px;
-            color: var(--text-light);
-        }
-
-        .instructions {
-            background: #e3f2fd;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 30px;
-        }
-
-        .instructions h3 {
-            color: var(--dark-blue);
-            margin-bottom: 15px;
-        }
-
-        .instructions ol {
-            padding-left: 20px;
-        }
-
-        .instructions li {
-            margin-bottom: 10px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: var(--text-light);
-            font-size: 14px;
-            border-top: 1px solid var(--border);
-        }
-
-        .type-bug { background: #A8B820; }
-        .type-dark { background: #705848; }
-        .type-dragon { background: #7038F8; }
-        .type-electric { background: #F8D030; }
-        .type-fairy { background: #EE99AC; }
-        .type-fighting { background: #C03028; }
-        .type-fire { background: #F08030; }
-        .type-flying { background: #A890F0; }
-        .type-ghost { background: #705898; }
-        .type-grass { background: #78C850; }
-        .type-ground { background: #E0C068; }
-        .type-ice { background: #98D8D8; }
-        .type-normal { background: #A8A878; }
-        .type-poison { background: #A040A0; }
-        .type-psychic { background: #F85888; }
-        .type-rock { background: #B8A038; }
-        .type-steel { background: #B8B8D0; }
-        .type-water { background: #6890F0; }
-    </style>
+    #infoBox{margin-top:14px;padding:12px;border-radius:10px;background:#0f0f0f;border:1px solid var(--line);display:none}
+    footer{padding:18px;text-align:center;color:var(--muted);font-size:13px}
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZjYjA1IiBkPSJNNzggMjVWNWE1MCA1MCAwIDExMTAwIDB2MjBhNDUgNDUgMCAxMS05MCAwVjE1YTM1IDM1IDAgMTA3MCAwdjEwYTQ1IDQ1IDAgMTEtOTAgMHoiLz48cGF0aCBmaWxsPSIjMmE3NWJiIiBkPSJNNzggMjVWNWE1MCA1MCAwIDExMTAwIDB2MjBhNDUgNDUgMCAxMS05MCAwVjE1YTM1IDM1IDAgMTA3MCAwdjEwYTQ1IDQ1IDAgMTEtOTAgMHoiLz48cGF0aCBmaWxsPSIjZTczNTBkIiBkPSJNNDA4IDQ4N2E1IDUgMCAwMS01IDVIMTA5YTUgNSAwIDAxLTUtNVYyNTVhNSA1IDAgMDE1LTVoMjk0YTUgNSAwIDAxNSA1djIzMnoiLz48cGF0aCBmaWxsPSIjZjVmNWY1IiBkPSJNNDAzIDI1MHYyMzBINTAyVjI1MGE1IDUgMCAwMC01LTVoLTk0eiIvPjxjaXJjbGUgY3g9IjI1NiIgY3k9IjE4MCIgcj0iNzAiIGZpbGw9IiNmZmNiMDUiLz48Y2lyY2xlIGN4PSIyNTYiIGN5PSIxODAiIHI9IjUwIiBmaWxsPSIjMmE3NWJiIi8+PHBhdGggZmlsbD0iI2Y1ZjVmNSIgZD0iTTM1NiAzMzBIMTU2Yy0xNi41IDAtMzAgMTMuNS0zMCAzMHMxMy41IDMwIDMwIDMwaDIwMGMxNi41IDAgMzAtMTMuNSAzMC0zMHMtMTMuNS0zMC0zMC0zMHoiLz48L3N2Zz4=" alt="Pokéball">
-                    <h1>PokéMMO Resources</h1>
-                </div>
-                <nav class="nav-links">
-                    <a href="#">Inicio</a>
-                    <a href="#">Herramientas</a>
-                    <a href="#">Guías</a>
-                    <a href="#">Calculadoras</a>
-                </nav>
-            </div>
-        </div>
-    </header>
+  <header>
+    <h1>PokéMMO • Gym Rerun — Plantilla con equipos aleatorios</h1>
+    <div class="hint">Cada recarga genera equipos aleatorios (6 pokémon por líder). Luego puedes reemplazar por los reales.</div>
+  </header>
 
-    <div class="container">
-        <div class="page-title">
-            <h2>Gym Rerun Tool</h2>
-            <p>Calcula y realiza un seguimiento de los tiempos de rerun de gimnasios</p>
-        </div>
-
-        <div class="tool-container">
-            <div class="region-selector">
-                <h3>Regiones</h3>
-                <ul class="region-list">
-                    <li class="region-item active"><a href="#">Kanto</a></li>
-                    <li class="region-item"><a href="#">Johto</a></li>
-                    <li class="region-item"><a href="#">Hoenn</a></li>
-                    <li class="region-item"><a href="#">Sinnoh</a></li>
-                    <li class="region-item"><a href="#">Unova</a></li>
-                </ul>
-
-                <h3 style="margin-top: 20px;">Gimnasios</h3>
-                <ul class="region-list">
-                    <li class="region-item"><a href="#">Pewter City</a></li>
-                    <li class="region-item"><a href="#">Cerulean City</a></li>
-                    <li class="region-item"><a href="#">Vermilion City</a></li>
-                    <li class="region-item"><a href="#">Celadon City</a></li>
-                    <li class="region-item"><a href="#">Fuchsia City</a></li>
-                    <li class="region-item"><a href="#">Saffron City</a></li>
-                    <li class="region-item"><a href="#">Cinnabar Island</a></li>
-                    <li class="region-item"><a href="#">Viridian City</a></li>
-                </ul>
-            </div>
-
-            <div class="gym-rerun-content">
-                <div class="timer-section">
-                    <h3>Tiempo hasta el próximo rerun</h3>
-                    <div class="timer-display">06:22:15</div>
-                    <div class="timer-controls">
-                        <button class="timer-btn start">Iniciar</button>
-                        <button class="timer-btn pause">Pausar</button>
-                        <button class="timer-btn reset">Reiniciar</button>
-                    </div>
-                </div>
-
-                <div class="gym-info">
-                    <div class="info-card">
-                        <h4>Información del Gimnasio</h4>
-                        <div class="info-item">
-                            <span class="info-label">Líder:</span>
-                            <span class="info-value">Brock</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Tipo:</span>
-                            <span class="info-value">Roca</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Nivel:</span>
-                            <span class="info-value">14</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Recompensa:</span>
-                            <span class="info-value">$3500</span>
-                        </div>
-                    </div>
-
-                    <div class="info-card">
-                        <h4>Tiempos de Rerun</h4>
-                        <div class="info-item">
-                            <span class="info-label">Tiempo base:</span>
-                            <span class="info-value">6 horas</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Reducción por donación:</span>
-                            <span class="info-value">1 hora</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Tiempo actual:</span>
-                            <span class="info-value">5 horas</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Próximo rerun:</span>
-                            <span class="info-value">14:30</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="gym-leaders">
-                    <h3>Líderes de Gimnasio - Kanto</h3>
-                    <div class="leaders-grid">
-                        <div class="leader-card">
-                            <div class="leader-image">
-                                <img src="https://archives.bulbagarden.net/media/upload/thumb/6/6a/Brock_OS.png/150px-Brock_OS.png" alt="Brock">
-                            </div>
-                            <div class="leader-name">Brock</div>
-                            <div class="leader-type type-rock">Roca</div>
-                            <div class="leader-pokemon">Geodude, Onix</div>
-                        </div>
-
-                        <div class="leader-card">
-                            <div class="leader-image">
-                                <img src="https://archives.bulbagarden.net/media/upload/thumb/3/38/Misty_OS.png/150px-Misty_OS.png" alt="Misty">
-                            </div>
-                            <div class="leader-name">Misty</div>
-                            <div class="leader-type type-water">Agua</div>
-                            <div class="leader-pokemon">Starmie, Staryu</div>
-                        </div>
-
-                        <div class="leader-card">
-                            <div class="leader-image">
-                                <img src="https://archives.bulbagarden.net/media/upload/thumb/5/5c/Lt_Surge_OS.png/150px-Lt_Surge_OS.png" alt="Lt. Surge">
-                            </div>
-                            <div class="leader-name">Lt. Surge</div>
-                            <div class="leader-type type-electric">Eléctrico</div>
-                            <div class="leader-pokemon">Voltorb, Pikachu, Raichu</div>
-                        </div>
-
-                        <div class="leader-card">
-                            <div class="leader-image">
-                                <img src="https://archives.bulbagarden.net/media/upload/thumb/3/33/Erika_OS.png/150px-Erika_OS.png" alt="Erika">
-                            </div>
-                            <div class="leader-name">Erika</div>
-                            <div class="leader-type type-grass">Planta</div>
-                            <div class="leader-pokemon">Victreebel, Tangela, Vileplume</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="instructions">
-                    <h3>Instrucciones de uso</h3>
-                    <ol>
-                        <li>Selecciona la región y el gimnasio que deseas trackear</li>
-                        <li>Haz clic en "Iniciar" cuando comiences el rerun del gimnasio</li>
-                        <li>El temporizador mostrará el tiempo restante para el próximo rerun</li>
-                        <li>Puedes pausar o reiniciar el temporizador según sea necesario</li>
-                        <li>Los tiempos base se reducen con donaciones al canal de Discord</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
+  <div class="wrap">
+    <div class="tools">
+      <input id="search" class="search" placeholder="Buscar región, líder o pokémon…" />
+      <button id="refresh" class="btn">Re-generar equipos</button>
+      <button id="expandAll" class="btn">Expandir todo</button>
+      <button id="collapseAll" class="btn">Cerrar todo</button>
     </div>
 
-    <footer>
-        <div class="container">
-            <p>© 2023 PokéMMO Resources - Todos los derechos reservados</p>
-            <p>Esta herramienta no está afiliada oficialmente con PokéMMO</p>
-        </div>
-    </footer>
+    <div id="treeRoot"></div>
+    <div id="infoBox"></div>
+  </div>
 
-    <script>
-        // Temporizador funcional
-        let timerInterval;
-        let hours = 6;
-        let minutes = 22;
-        let seconds = 15;
-        let isRunning = false;
+  <footer>Sprites: Pokémon Showdown • Plantilla creada para PokéMMO</footer>
 
-        const timerDisplay = document.querySelector('.timer-display');
-        const startBtn = document.querySelector('.timer-btn.start');
-        const pauseBtn = document.querySelector('.timer-btn.pause');
-        const resetBtn = document.querySelector('.timer-btn.reset');
+  <script>
+    // Lista de líderes por región (sin teams; se generan aleatorios)
+    const REGIONS = [
+      {region:'Kanto', code:'kanto', leaders:['Brock','Misty','Lt. Surge','Erika','Koga','Sabrina','Blaine','Giovanni']},
+      {region:'Johto', code:'johto', leaders:['Falkner','Bugsy','Whitney','Morty','Chuck','Jasmine','Pryce','Clair']},
+      {region:'Hoenn', code:'hoenn', leaders:['Roxanne','Brawly','Wattson','Flannery','Norman','Winona','Tate & Liza','Wallace']},
+      {region:'Sinnoh', code:'sinnoh', leaders:['Roark','Gardenia','Maylene','Crasher Wake','Fantina','Byron','Candice','Volkner']},
+      {region:'Unova', code:'unova', leaders:['Cilan/Chili/Cress','Lenora','Burgh','Elesa','Clay','Skyla','Brycen','Drayden/Iris']}
+    ];
 
-        function updateTimerDisplay() {
-            timerDisplay.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
+    // Pool de pokémon para seleccionar aleatorio (nombres compatibles con Showdown gen5)
+    const POOL = [
+      'geodude','onix','golem','rhyhorn','kabuto','aerodactyl','starmie','gyarados','vaporeon','jolteon','flareon',
+      'raichu','magneton','vileplume','victreebel','roserade','torterra','lucario','slaking','altaria','milotic',
+      'manectric','metagross','aggron','talonflame','pidgeot','scizor','heracross','miltank','clefable','snorlax',
+      'gengar','mismagius','chandelure','drifblim','hydreigon','haxorus','excadrill','krookodile','seismitoad','mamoswine',
+      'braviary','swanna','swellow','archeops','rotom','rotom-wash','rotom-heat','rotom-fan','rotom-frost','rotom-mow',
+      'togekiss','blaziken','sceptile','swampert','sliggoo','goodra','greninja','tyranitar','scrafty','umbreon',
+      'espeon','glaceon','leafeon','vulpix','ninetales','charizard','blastoise','venusaur','alakazam','metagross'
+    ];
 
-        function startTimer() {
-            if (isRunning) return;
-            
-            isRunning = true;
-            timerInterval = setInterval(() => {
-                seconds--;
-                
-                if (seconds < 0) {
-                    seconds = 59;
-                    minutes--;
-                    
-                    if (minutes < 0) {
-                        minutes = 59;
-                        hours--;
-                        
-                        if (hours < 0) {
-                            clearInterval(timerInterval);
-                            timerDisplay.textContent = "00:00:00";
-                            alert("¡El tiempo de rerun ha finalizado!");
-                            resetTimer();
-                            return;
-                        }
-                    }
-                }
-                
-                updateTimerDisplay();
-            }, 1000);
-        }
+    const TRAINER_BASE = 'https://play.pokemonshowdown.com/sprites/trainers/';
+    const PKM_BASE = 'https://play.pokemonshowdown.com/sprites/gen5/';
 
-        function pauseTimer() {
-            clearInterval(timerInterval);
-            isRunning = false;
-        }
+    function slugify(name){
+      // Keep dots for forms like mr.mime, rotom-wash already with dash handled in POOL
+      return name.toLowerCase().replace(/[^a-z0-9-\.]/g,'');
+    }
 
-        function resetTimer() {
-            clearInterval(timerInterval);
-            isRunning = false;
-            hours = 6;
-            minutes = 22;
-            seconds = 15;
-            updateTimerDisplay();
-        }
+    function createImg(src, alt, cls=''){
+      const img = document.createElement('img');
+      img.src = src; img.alt = alt; img.className = 'icon ' + cls;
+      img.onerror = ()=>{ img.src = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><rect width='32' height='32' fill='%23000'/><text x='16' y='20' font-size='12' text-anchor='middle' fill='%23fff'>?</text></svg>` };
+      return img;
+    }
 
-        startBtn.addEventListener('click', startTimer);
-        pauseBtn.addEventListener('click', pauseTimer);
-        resetBtn.addEventListener('click', resetTimer);
+    function pkmUrl(name){ return PKM_BASE + (name.endsWith('.png')?name:slugify(name)+'.png'); }
+    function trainerUrl(name){ return TRAINER_BASE + (name.toLowerCase().replace(/[^a-z0-9-\.]/g,'') || 'unknown') + '.png'; }
 
-        // Interactividad para los elementos de región
-        const regionItems = document.querySelectorAll('.region-item');
-        regionItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                regionItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-            });
+    // Genera N elementos aleatorios sin repetir
+    function pickRandom(pool, n){
+      const copy = pool.slice();
+      const out = [];
+      for(let i=0;i<n && copy.length;i++){
+        const idx = Math.floor(Math.random()*copy.length);
+        out.push(copy.splice(idx,1)[0]);
+      }
+      return out;
+    }
+
+    // Render
+    const root = document.getElementById('treeRoot');
+
+    function buildTree(){
+      root.innerHTML = '';
+      REGIONS.forEach(region=>{
+        const box = document.createElement('div'); box.className='region';
+        const head = document.createElement('div'); head.className='head';
+        head.addEventListener('click', e=>{ head.parentElement.classList.toggle('active'); e.stopPropagation(); });
+        const img = createImg(`https://play.pokemonshowdown.com/sprites/trainers/${region.code}.png`, region.region);
+        head.appendChild(img);
+        const title = document.createElement('div'); title.innerHTML = `<strong>${region.region}</strong> <span class='tag'>${region.leaders.length} líderes</span>`;
+        head.appendChild(title);
+        box.appendChild(head);
+
+        const leadersUl = document.createElement('ul'); leadersUl.className='nested';
+
+        region.leaders.forEach(ldr=>{
+          const leaderLi = document.createElement('li'); leaderLi.className='leader';
+          leaderLi.addEventListener('click', e=>{ leaderLi.classList.toggle('active'); e.stopPropagation(); });
+
+          const limg = createImg(trainerUrl(ldr), ldr);
+          leaderLi.appendChild(limg);
+          leaderLi.appendChild(document.createTextNode(' ' + ldr));
+
+          // team random
+          const team = pickRandom(POOL,6);
+          const teamUl = document.createElement('ul'); teamUl.className='nested';
+          team.forEach(mon=>{
+            const monLi = document.createElement('li'); monLi.className='pkm';
+            monLi.addEventListener('click', e=>{ showInfo(mon, 'Estrategia placeholder: ajusta según Gym Rerun'); e.stopPropagation(); });
+            const mimg = createImg(pkmUrl(mon), mon, 'pkm');
+            monLi.appendChild(mimg);
+            monLi.appendChild(document.createTextNode(' ' + mon));
+            teamUl.appendChild(monLi);
+          });
+
+          leaderLi.appendChild(teamUl);
+          leadersUl.appendChild(leaderLi);
         });
-    </script>
+
+        box.appendChild(leadersUl);
+        root.appendChild(box);
+      });
+    }
+
+    function showInfo(pokemon, texto){
+      const box = document.getElementById('infoBox');
+      box.innerHTML = `<b>${pokemon}</b>: ${texto}`; box.style.display='block';
+    }
+
+    // Events
+    document.getElementById('refresh').addEventListener('click', ()=>{ buildTree(); });
+    document.getElementById('expandAll').addEventListener('click', ()=>{ document.querySelectorAll('.region').forEach(r=>r.classList.add('active')); document.querySelectorAll('.nested').forEach(n=>n.style.display='block'); });
+    document.getElementById('collapseAll').addEventListener('click', ()=>{ document.querySelectorAll('.region').forEach(r=>r.classList.remove('active')); document.querySelectorAll('.nested').forEach(n=>n.style.display='none'); document.getElementById('infoBox').style.display='none'; });
+
+    // Search
+    document.getElementById('search').addEventListener('input', function(){
+      const q = this.value.trim().toLowerCase();
+      if(!q){ document.querySelectorAll('.region').forEach(r=>r.style.display='block'); return; }
+      document.querySelectorAll('.region').forEach(r=>{
+        const text = r.textContent.toLowerCase();
+        r.style.display = text.includes(q)?'block':'none';
+      });
+    });
+
+    // Init
+    buildTree();
+  </script>
 </body>
 </html>
