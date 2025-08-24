@@ -3,16 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PokeKing Tree - NPC Hezhong</title>
+    <title>PokéMMO Gym Rerun Tool</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         :root {
             --primary: #e3350d;
             --secondary: #ffcb05;
@@ -27,10 +20,16 @@
             --hover-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         body {
             background-color: var(--background);
             color: var(--text);
-            min-height: 100vh;
             line-height: 1.6;
         }
 
@@ -43,9 +42,9 @@
         header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--dark-blue) 100%);
             color: white;
-            padding: 15px 0;
+            padding: 20px 0;
             box-shadow: var(--shadow);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .header-content {
@@ -72,7 +71,7 @@
 
         .nav-links {
             display: flex;
-            gap: 15px;
+            gap: 20px;
         }
 
         .nav-links a {
@@ -88,259 +87,268 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
-        .breadcrumb {
-            background: var(--card-bg);
-            padding: 12px 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            flex-wrap: wrap;
-        }
-
-        .breadcrumb a {
-            color: var(--dark-blue);
-            text-decoration: none;
-        }
-
-        .breadcrumb i {
-            color: #aaa;
-            font-size: 12px;
-        }
-
         .page-title {
-            font-size: 28px;
-            color: var(--primary);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary);
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        .npc-info {
+        .page-title h2 {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            color: var(--text-light);
+            font-size: 18px;
+        }
+
+        .tool-container {
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 20px;
             margin-bottom: 30px;
         }
 
-        @media (max-width: 768px) {
-            .npc-info {
+        @media (max-width: 900px) {
+            .tool-container {
                 grid-template-columns: 1fr;
             }
         }
 
-        .npc-card {
+        .region-selector {
             background: var(--card-bg);
             border-radius: 10px;
             padding: 20px;
             box-shadow: var(--shadow);
-            text-align: center;
         }
 
-        .npc-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--dark-blue) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 4px solid var(--secondary);
-        }
-
-        .npc-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .npc-name {
-            font-size: 22px;
-            font-weight: bold;
+        .region-selector h3 {
             color: var(--dark-blue);
-            margin-bottom: 5px;
-        }
-
-        .npc-role {
-            color: var(--primary);
-            font-weight: 500;
             margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
         }
 
-        .npc-details {
+        .region-list {
+            list-style: none;
+        }
+
+        .region-item {
+            margin-bottom: 10px;
+        }
+
+        .region-item a {
+            display: block;
+            padding: 12px 15px;
+            background: #f0f8ff;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--dark-blue);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .region-item a:hover {
+            background: var(--light-blue);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .region-item.active a {
+            background: var(--dark-blue);
+            color: white;
+        }
+
+        .gym-rerun-content {
             background: var(--card-bg);
             border-radius: 10px;
             padding: 20px;
             box-shadow: var(--shadow);
         }
 
-        .detail-section {
-            margin-bottom: 20px;
+        .timer-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e3f2fd 100%);
+            border-radius: 10px;
         }
 
-        .detail-section h3 {
+        .timer-display {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .timer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .timer-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .timer-btn.start {
+            background: var(--primary);
+            color: white;
+        }
+
+        .timer-btn.pause {
+            background: var(--secondary);
+            color: var(--text);
+        }
+
+        .timer-btn.reset {
+            background: var(--dark-blue);
+            color: white;
+        }
+
+        .timer-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .gym-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .gym-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .info-card h4 {
             color: var(--dark-blue);
             margin-bottom: 10px;
             padding-bottom: 5px;
             border-bottom: 1px solid var(--border);
         }
 
-        .detail-item {
+        .info-item {
             display: flex;
-            margin-bottom: 10px;
+            justify-content: space-between;
+            margin-bottom: 8px;
         }
 
-        .detail-label {
-            flex: 1;
+        .info-label {
             font-weight: 500;
             color: var(--text-light);
         }
 
-        .detail-value {
-            flex: 2;
+        .info-value {
+            font-weight: bold;
+            color: var(--primary);
         }
 
-        .pokemon-list {
+        .gym-leaders {
+            margin-top: 30px;
+        }
+
+        .gym-leaders h3 {
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .leaders-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 15px;
-            margin-top: 15px;
         }
 
-        .pokemon-item {
+        .leader-card {
             background: #f9f9f9;
-            border-radius: 8px;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
             transition: all 0.3s;
         }
 
-        .pokemon-item:hover {
-            background: #f0f8ff;
-            transform: translateY(-3px);
+        .leader-card:hover {
+            transform: translateY(-5px);
             box-shadow: var(--hover-shadow);
         }
 
-        .pokemon-image {
-            width: 50px;
-            height: 50px;
+        .leader-image {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            background: #fff;
+            margin: 0 auto 10px;
+            background: var(--light-blue);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            border: 2px solid var(--border);
+            border: 3px solid var(--secondary);
         }
 
-        .pokemon-image img {
+        .leader-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .pokemon-info {
-            flex: 1;
-        }
-
-        .pokemon-name {
-            font-weight: 500;
+        .leader-name {
+            font-weight: bold;
             color: var(--dark-blue);
+            margin-bottom: 5px;
         }
 
-        .pokemon-type {
+        .leader-type {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .leader-pokemon {
             font-size: 12px;
             color: var(--text-light);
         }
 
-        .type-badge {
-            display: inline-block;
-            padding: 3px 8px;
+        .instructions {
+            background: #e3f2fd;
             border-radius: 10px;
-            font-size: 11px;
-            font-weight: bold;
-            color: white;
-            margin-right: 5px;
-        }
-
-        .rewards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .reward-item {
-            background: #f9f9f9;
-            border-radius: 8px;
-            padding: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.3s;
-        }
-
-        .reward-item:hover {
-            background: #fff8e1;
-            transform: translateY(-3px);
-            box-shadow: var(--hover-shadow);
-        }
-
-        .reward-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text);
-            font-size: 18px;
-        }
-
-        .reward-info {
-            flex: 1;
-        }
-
-        .reward-name {
-            font-weight: 500;
-            color: var(--dark-blue);
-        }
-
-        .reward-amount {
-            font-size: 14px;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .strategy-section {
+            padding: 20px;
             margin-top: 30px;
         }
 
-        .strategy-content {
-            background: #f9f9f9;
-            border-radius: 8px;
-            padding: 15px;
-            line-height: 1.8;
-        }
-
-        .strategy-content p {
+        .instructions h3 {
+            color: var(--dark-blue);
             margin-bottom: 15px;
         }
 
-        .tip-box {
-            background: #e3f2fd;
-            border-left: 4px solid var(--light-blue);
-            padding: 12px 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
         }
 
         footer {
@@ -352,36 +360,24 @@
             border-top: 1px solid var(--border);
         }
 
-        @media (max-width: 900px) {
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .pokemon-list, .rewards {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-        }
-
-        @media (max-width: 600px) {
-            .breadcrumb {
-                font-size: 12px;
-            }
-            
-            .page-title {
-                font-size: 24px;
-            }
-            
-            .npc-image {
-                width: 120px;
-                height: 120px;
-            }
-        }
+        .type-bug { background: #A8B820; }
+        .type-dark { background: #705848; }
+        .type-dragon { background: #7038F8; }
+        .type-electric { background: #F8D030; }
+        .type-fairy { background: #EE99AC; }
+        .type-fighting { background: #C03028; }
+        .type-fire { background: #F08030; }
+        .type-flying { background: #A890F0; }
+        .type-ghost { background: #705898; }
+        .type-grass { background: #78C850; }
+        .type-ground { background: #E0C068; }
+        .type-ice { background: #98D8D8; }
+        .type-normal { background: #A8A878; }
+        .type-poison { background: #A040A0; }
+        .type-psychic { background: #F85888; }
+        .type-rock { background: #B8A038; }
+        .type-steel { background: #B8B8D0; }
+        .type-water { background: #6890F0; }
     </style>
 </head>
 <body>
@@ -390,205 +386,234 @@
             <div class="header-content">
                 <div class="logo">
                     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZjYjA1IiBkPSJNNzggMjVWNWE1MCA1MCAwIDExMTAwIDB2MjBhNDUgNDUgMCAxMS05MCAwVjE1YTM1IDM1IDAgMTA3MCAwdjEwYTQ1IDQ1IDAgMTEtOTAgMHoiLz48cGF0aCBmaWxsPSIjMmE3NWJiIiBkPSJNNzggMjVWNWE1MCA1MCAwIDExMTAwIDB2MjBhNDUgNDUgMCAxMS05MCAwVjE1YTM1IDM1IDAgMTA3MCAwdjEwYTQ1IDQ1IDAgMTEtOTAgMHoiLz48cGF0aCBmaWxsPSIjZTczNTBkIiBkPSJNNDA4IDQ4N2E1IDUgMCAwMS01IDVIMTA5YTUgNSAwIDAxLTUtNVYyNTVhNSA1IDAgMDE1LTVoMjk0YTUgNSAwIDAxNSA1djIzMnoiLz48cGF0aCBmaWxsPSIjZjVmNWY1IiBkPSJNNDAzIDI1MHYyMzBINTAyVjI1MGE1IDUgMCAwMC01LTVoLTk0eiIvPjxjaXJjbGUgY3g9IjI1NiIgY3k9IjE4MCIgcj0iNzAiIGZpbGw9IiNmZmNiMDUiLz48Y2lyY2xlIGN4PSIyNTYiIGN5PSIxODAiIHI9IjUwIiBmaWxsPSIjMmE3NWJiIi8+PHBhdGggZmlsbD0iI2Y1ZjVmNSIgZD0iTTM1NiAzMzBIMTU2Yy0xNi41IDAtMzAgMTMuNS0zMCAzMHMxMy41IDMwIDMwIDMwaDIwMGMxNi41IDAgMzAtMTMuNSAzMC0zMHMtMTMuNS0zMC0zMC0zMHoiLz48L3N2Zz4=" alt="Pokéball">
-                    <h1>PokeKing Tree</h1>
+                    <h1>PokéMMO Resources</h1>
                 </div>
                 <nav class="nav-links">
                     <a href="#">Inicio</a>
-                    <a href="#">Pokédex</a>
+                    <a href="#">Herramientas</a>
                     <a href="#">Guías</a>
-                    <a href="#">Ligas</a>
-                    <a href="#">Eventos</a>
+                    <a href="#">Calculadoras</a>
                 </nav>
             </div>
         </div>
     </header>
 
     <div class="container">
-        <div class="breadcrumb">
-            <a href="#">Inicio</a>
-            <i class="fas fa-chevron-right"></i>
-            <a href="#">Tree</a>
-            <i class="fas fa-chevron-right"></i>
-            <a href="#">NPC</a>
-            <i class="fas fa-chevron-right"></i>
-            <span>HEZHONG</span>
+        <div class="page-title">
+            <h2>Gym Rerun Tool</h2>
+            <p>Calcula y realiza un seguimiento de los tiempos de rerun de gimnasios</p>
         </div>
 
-        <h1 class="page-title">NPC Hezhong - Líder de Gimnasio</h1>
-
-        <div class="npc-info">
-            <div class="npc-card">
-                <div class="npc-image">
-                    <img src="https://archives.bulbagarden.net/media/upload/thumb/3/3a/VSMarlon.png/200px-VSMarlon.png" alt="Hezhong">
-                </div>
-                <h2 class="npc-name">Hezhong</h2>
-                <p class="npc-role">Líder de Gimnasio de Agua</p>
-                <p><strong>Región:</strong> Teselia</p>
-                <p><strong>Ubicación:</strong> Ciudad Gaviota</p>
-                <p><strong>Medalla:</strong> Medalla Ola</p>
-            </div>
-
-            <div class="npc-details">
-                <div class="detail-section">
-                    <h3>Información de Batalla</h3>
-                    <div class="detail-item">
-                        <div class="detail-label">Nivel:</div>
-                        <div class="detail-value">45 - 50</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Tipo:</div>
-                        <div class="detail-value">
-                            <span class="type-badge" style="background: #6890F0">Agua</span>
-                        </div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Dificultad:</div>
-                        <div class="detail-value">Media-Alta</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-label">Recompensa:</div>
-                        <div class="detail-value">$5500</div>
-                    </div>
-                </div>
-
-                <div class="detail-section">
-                    <h3>Pokémon del Equipo</h3>
-                    <div class="pokemon-list">
-                        <div class="pokemon-item">
-                            <div class="pokemon-image">
-                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/99.png" alt="Kingler">
-                            </div>
-                            <div class="pokemon-info">
-                                <div class="pokemon-name">Kingler</div>
-                                <div class="pokemon-type">Nv. 48 | 
-                                    <span class="type-badge" style="background: #6890F0">Agua</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pokemon-item">
-                            <div class="pokemon-image">
-                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/91.png" alt="Cloyster">
-                            </div>
-                            <div class="pokemon-info">
-                                <div class="pokemon-name">Cloyster</div>
-                                <div class="pokemon-type">Nv. 48 | 
-                                    <span class="type-badge" style="background: #6890F0">Agua</span>
-                                    <span class="type-badge" style="background: #98D8D8">Hielo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pokemon-item">
-                            <div class="pokemon-image">
-                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png" alt="Lapras">
-                            </div>
-                            <div class="pokemon-info">
-                                <div class="pokemon-name">Lapras</div>
-                                <div class="pokemon-type">Nv. 49 | 
-                                    <span class="type-badge" style="background: #6890F0">Agua</span>
-                                    <span class="type-badge" style="background: #98D8D8">Hielo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pokemon-item">
-                            <div class="pokemon-image">
-                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/230.png" alt="Kingdra">
-                            </div>
-                            <div class="pokemon-info">
-                                <div class="pokemon-name">Kingdra</div>
-                                <div class="pokemon-type">Nv. 50 | 
-                                    <span class="type-badge" style="background: #6890F0">Agua</span>
-                                    <span class="type-badge" style="background: #7038F8">Dragón</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="detail-section">
-                    <h3>Recompensas</h3>
-                    <div class="rewards">
-                        <div class="reward-item">
-                            <div class="reward-icon">
-                                <i class="fas fa-medal"></i>
-                            </div>
-                            <div class="reward-info">
-                                <div class="reward-name">Medalla Ola</div>
-                                <div class="reward-amount">x1</div>
-                            </div>
-                        </div>
-                        <div class="reward-item">
-                            <div class="reward-icon">
-                                <i class="fas fa-coins"></i>
-                            </div>
-                            <div class="reward-info">
-                                <div class="reward-name">Dinero</div>
-                                <div class="reward-amount">$5500</div>
-                            </div>
-                        </div>
-                        <div class="reward-item">
-                            <div class="reward-icon">
-                                <i class="fas fa-box-open"></i>
-                            </div>
-                            <div class="reward-info">
-                                <div class="reward-name">MT55</div>
-                                <div class="reward-amount">Scald</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="strategy-section">
-            <h3>Estrategia de Batalla</h3>
-            <div class="strategy-content">
-                <p>Hezhong es un líder de gimnasio especializado en Pokémon de tipo Agua. Su equipo está bien equilibrado entre defensa y ataque, con Kingdra como su Pokémon más fuerte.</p>
-                
-                <div class="tip-box">
-                    <p><strong>Consejo:</strong> Usa Pokémon de tipo Planta o Eléctrico para obtener ventaja contra su equipo de tipo Agua.</p>
-                </div>
-                
-                <p><strong>Recomendaciones:</strong></p>
-                <ul style="padding-left: 20px; margin-bottom: 15px;">
-                    <li>Jolteon con Trueno o Impactrueno es muy efectivo</li>
-                    <li>Venusaur con Latigazo o Rayo Solar</li>
-                    <li>Electivire con Puño Trueno</li>
-                    <li>Evita usar Pokémon de tipo Fuego, Roca o Tierra</li>
+        <div class="tool-container">
+            <div class="region-selector">
+                <h3>Regiones</h3>
+                <ul class="region-list">
+                    <li class="region-item active"><a href="#">Kanto</a></li>
+                    <li class="region-item"><a href="#">Johto</a></li>
+                    <li class="region-item"><a href="#">Hoenn</a></li>
+                    <li class="region-item"><a href="#">Sinnoh</a></li>
+                    <li class="region-item"><a href="#">Unova</a></li>
                 </ul>
-                
-                <p>Kingdra es su Pokémon más peligroso ya que solo es débil contra tipo Dragón y Hada. Considera llevar un Pokémon de estos tipos o usar movimientos de estos tipos.</p>
+
+                <h3 style="margin-top: 20px;">Gimnasios</h3>
+                <ul class="region-list">
+                    <li class="region-item"><a href="#">Pewter City</a></li>
+                    <li class="region-item"><a href="#">Cerulean City</a></li>
+                    <li class="region-item"><a href="#">Vermilion City</a></li>
+                    <li class="region-item"><a href="#">Celadon City</a></li>
+                    <li class="region-item"><a href="#">Fuchsia City</a></li>
+                    <li class="region-item"><a href="#">Saffron City</a></li>
+                    <li class="region-item"><a href="#">Cinnabar Island</a></li>
+                    <li class="region-item"><a href="#">Viridian City</a></li>
+                </ul>
+            </div>
+
+            <div class="gym-rerun-content">
+                <div class="timer-section">
+                    <h3>Tiempo hasta el próximo rerun</h3>
+                    <div class="timer-display">06:22:15</div>
+                    <div class="timer-controls">
+                        <button class="timer-btn start">Iniciar</button>
+                        <button class="timer-btn pause">Pausar</button>
+                        <button class="timer-btn reset">Reiniciar</button>
+                    </div>
+                </div>
+
+                <div class="gym-info">
+                    <div class="info-card">
+                        <h4>Información del Gimnasio</h4>
+                        <div class="info-item">
+                            <span class="info-label">Líder:</span>
+                            <span class="info-value">Brock</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo:</span>
+                            <span class="info-value">Roca</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Nivel:</span>
+                            <span class="info-value">14</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Recompensa:</span>
+                            <span class="info-value">$3500</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h4>Tiempos de Rerun</h4>
+                        <div class="info-item">
+                            <span class="info-label">Tiempo base:</span>
+                            <span class="info-value">6 horas</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Reducción por donación:</span>
+                            <span class="info-value">1 hora</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tiempo actual:</span>
+                            <span class="info-value">5 horas</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Próximo rerun:</span>
+                            <span class="info-value">14:30</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gym-leaders">
+                    <h3>Líderes de Gimnasio - Kanto</h3>
+                    <div class="leaders-grid">
+                        <div class="leader-card">
+                            <div class="leader-image">
+                                <img src="https://archives.bulbagarden.net/media/upload/thumb/6/6a/Brock_OS.png/150px-Brock_OS.png" alt="Brock">
+                            </div>
+                            <div class="leader-name">Brock</div>
+                            <div class="leader-type type-rock">Roca</div>
+                            <div class="leader-pokemon">Geodude, Onix</div>
+                        </div>
+
+                        <div class="leader-card">
+                            <div class="leader-image">
+                                <img src="https://archives.bulbagarden.net/media/upload/thumb/3/38/Misty_OS.png/150px-Misty_OS.png" alt="Misty">
+                            </div>
+                            <div class="leader-name">Misty</div>
+                            <div class="leader-type type-water">Agua</div>
+                            <div class="leader-pokemon">Starmie, Staryu</div>
+                        </div>
+
+                        <div class="leader-card">
+                            <div class="leader-image">
+                                <img src="https://archives.bulbagarden.net/media/upload/thumb/5/5c/Lt_Surge_OS.png/150px-Lt_Surge_OS.png" alt="Lt. Surge">
+                            </div>
+                            <div class="leader-name">Lt. Surge</div>
+                            <div class="leader-type type-electric">Eléctrico</div>
+                            <div class="leader-pokemon">Voltorb, Pikachu, Raichu</div>
+                        </div>
+
+                        <div class="leader-card">
+                            <div class="leader-image">
+                                <img src="https://archives.bulbagarden.net/media/upload/thumb/3/33/Erika_OS.png/150px-Erika_OS.png" alt="Erika">
+                            </div>
+                            <div class="leader-name">Erika</div>
+                            <div class="leader-type type-grass">Planta</div>
+                            <div class="leader-pokemon">Victreebel, Tangela, Vileplume</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="instructions">
+                    <h3>Instrucciones de uso</h3>
+                    <ol>
+                        <li>Selecciona la región y el gimnasio que deseas trackear</li>
+                        <li>Haz clic en "Iniciar" cuando comiences el rerun del gimnasio</li>
+                        <li>El temporizador mostrará el tiempo restante para el próximo rerun</li>
+                        <li>Puedes pausar o reiniciar el temporizador según sea necesario</li>
+                        <li>Los tiempos base se reducen con donaciones al canal de Discord</li>
+                    </ol>
+                </div>
             </div>
         </div>
     </div>
 
     <footer>
         <div class="container">
-            <p>© 2023 PokeKing Tree - Todos los derechos reservados</p>
-            <p>Este sitio no está afiliado con Pokémon, The Pokémon Company International, Nintendo o Game Freak</p>
+            <p>© 2023 PokéMMO Resources - Todos los derechos reservados</p>
+            <p>Esta herramienta no está afiliada oficialmente con PokéMMO</p>
         </div>
     </footer>
 
     <script>
-        // Interactividad para los elementos de Pokémon
-        const pokemonItems = document.querySelectorAll('.pokemon-item');
-        pokemonItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const pokemonName = item.querySelector('.pokemon-name').textContent;
-                alert(`Has seleccionado a ${pokemonName}. ¿Quieres ver más detalles?`);
-            });
-        });
+        // Temporizador funcional
+        let timerInterval;
+        let hours = 6;
+        let minutes = 22;
+        let seconds = 15;
+        let isRunning = false;
 
-        // Efecto de hover para las recompensas
-        const rewardItems = document.querySelectorAll('.reward-item');
-        rewardItems.forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                item.style.transform = 'translateY(-5px)';
-                item.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-            });
+        const timerDisplay = document.querySelector('.timer-display');
+        const startBtn = document.querySelector('.timer-btn.start');
+        const pauseBtn = document.querySelector('.timer-btn.pause');
+        const resetBtn = document.querySelector('.timer-btn.reset');
+
+        function updateTimerDisplay() {
+            timerDisplay.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function startTimer() {
+            if (isRunning) return;
             
-            item.addEventListener('mouseleave', () => {
-                item.style.transform = 'translateY(0)';
-                item.style.boxShadow = 'none';
+            isRunning = true;
+            timerInterval = setInterval(() => {
+                seconds--;
+                
+                if (seconds < 0) {
+                    seconds = 59;
+                    minutes--;
+                    
+                    if (minutes < 0) {
+                        minutes = 59;
+                        hours--;
+                        
+                        if (hours < 0) {
+                            clearInterval(timerInterval);
+                            timerDisplay.textContent = "00:00:00";
+                            alert("¡El tiempo de rerun ha finalizado!");
+                            resetTimer();
+                            return;
+                        }
+                    }
+                }
+                
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            hours = 6;
+            minutes = 22;
+            seconds = 15;
+            updateTimerDisplay();
+        }
+
+        startBtn.addEventListener('click', startTimer);
+        pauseBtn.addEventListener('click', pauseTimer);
+        resetBtn.addEventListener('click', resetTimer);
+
+        // Interactividad para los elementos de región
+        const regionItems = document.querySelectorAll('.region-item');
+        regionItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                regionItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
             });
         });
     </script>
