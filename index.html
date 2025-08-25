@@ -9,14 +9,15 @@
   :root{
     --bg:#0a0e14;
     --accent:#ffcc00;
-    --muted:#ffffff;
+    --muted:#bfc5c9;
     --note:#ffffff;
-    --danger:#ff6bce;
+    --danger:#ff6b6b;
     --region-hoenn: #e15253;
     --region-unova: #9c5bba;
     --region-johto: #57ab5a;
     --region-sinnoh: #6a77d6;
     --region-kanto: #de7b3b;
+    --link: #4fc3f7;
   }
   *{box-sizing:border-box}
   body{
@@ -106,7 +107,7 @@
     height:96px;
     image-rendering:pixelated;
     border-radius:10px;
-    background:#13181f;
+    background:#000;
     border:2px solid rgba(255,255,255,0.08);
     box-shadow: 0 4px 8px rgba(0,0,0,0.4);
   }
@@ -149,9 +150,10 @@
   }
   
   .pkm img{
-    width:100;
-    height:100;
+    width:96px;
+    height:96px;
     image-rendering:pixelated;
+    object-fit: contain;
     background: #0f1319;
     border-radius: 8px;
     border: 1px solid rgba(255,255,255,0.08);
@@ -165,12 +167,12 @@
   }
   
   .pkm .name .plume{
-    color:#d7702c;
+    color:#e2752c;
     font-weight:700;
     margin-left:6px;
     font-size:11px;
     display: inline-block;
-    background: hsl(0, 0%, 9%);
+    background: hsl(24, 72%, 48%);
     padding: 2px 6px;
     border-radius: 4px;
   }
@@ -206,6 +208,25 @@
     margin: -10px 0 20px;
     line-height: 1.6;
   }
+  
+  .team-link {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 16px;
+    background: rgba(79, 195, 247, 0.15);
+    color: var(--link);
+    text-decoration: none;
+    border-radius: 6px;
+    border: 1px solid rgba(79, 195, 247, 0.3);
+    transition: all 0.2s;
+    font-size: 11px;
+  }
+  
+  .team-link:hover {
+    background: rgba(79, 195, 247, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
 
   @media (max-width:740px){
     .pkm{ width:140px }
@@ -235,13 +256,16 @@
 
 <header>
   <h1>PokéMMO — Gym Rerun Guide (Prehistoric 5 route)</h1>
-<div class="region-info">Team : <a href="https://pokepast.es/d4aa19551eed0bcc" class="team-link"  target="_blank"  style="color: var(--accent);"> Ver equipo en PokéPaste</a></div>
+  <div class="subtitle">Hecho Por PitufiStar</div>
 </header>
 
 <!-- HOENN -->
 <section class="region" id="hoenn">
   <h2>HOENN</h2>
-  
+  <div class="region-info">Team recomendado: 
+    <a href="https://pokepast.es/d4aa19551eed0bcc" class="team-link" target="_blank">Ver equipo en PokéPast</a>
+  </div>
+
   <article class="gym">
     <div class="gym-header">
       <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/flannery.png" alt="Lavaridge">
@@ -375,7 +399,7 @@ If Torkoal paralyzed from Thunder, use Paralyze Heal after gym or PC Heal
   <!-- Striaton split: Fire / Grass / Water -->
   <article class="gym">
     <div class="gym-header">
-      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/chili.png" alt="Striaton - Fire">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/cilan.png" alt="Striaton - Fire">
       <div class="gym-title">Striaton — Fire</div>
       <div class="gym-sub">Fire: Blastoise + Archeops</div>
     </div>
@@ -400,7 +424,7 @@ If Torkoal paralyzed from Thunder, use Paralyze Heal after gym or PC Heal
 
   <article class="gym">
     <div class="gym-header">
-      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/cress.png" alt="Striaton - Water">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/cilan.png" alt="Striaton - Water">
       <div class="gym-title">Striaton — Water</div>
       <div class="gym-sub">Water: Torkoal + Archeops into Heatran (Plume) +  Typhlosion</div>
     </div>
@@ -554,7 +578,7 @@ Swap Torkoal ➔ Typhlosion (Plume)</div>
 
     <div class="team">
       <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif" alt="Archeops"><div class="name">Archeops</div></div>
-      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosion</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosis</div></div>
     </div>
 
     <div class="note">If Archeops goes down replace Heatran 
@@ -708,7 +732,7 @@ T2: Heatran (Plume) + Typhlosion (Plume)</div>
 </section>
 
 <footer>
-  (Note kbro)
+  Guía creada por PitufiStar - Nota: Los tiempos pueden variar según el charm
 </footer>
 
 </body>
