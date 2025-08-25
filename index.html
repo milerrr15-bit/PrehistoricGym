@@ -1,171 +1,551 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guía Completa de Líderes de Gimnasio - Prehistoric 5 Route</title>
-  <style>
-    body {
-      font-family: 'Press Start 2P', cursive;
-      background-color: #111;
-      color: white;
-      text-align: center;
-      margin: 0;
-      padding: 20px;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px #000;
-    }
-    h2 {
-      font-size: 2em;
-      margin-top: 40px;
-      text-decoration: underline;
-      text-shadow: 1px 1px #000;
-    }
-    .region {
-      margin-top: 30px;
-      border-top: 3px solid #555;
-      padding-top: 20px;
-    }
-    .leader-card {
-      display: inline-block;
-      background: #222;
-      border: 3px solid #555;
-      border-radius: 10px;
-      padding: 10px;
-      margin: 15px;
-      width: 250px;
-      vertical-align: top;
-      box-shadow: 2px 2px #000;
-    }
-    .trainer-img img {
-      width: 100px;
-      height: 100px;
-      image-rendering: pixelated;
-      margin-bottom: 10px;
-    }
-    .pokemon {
-      display: inline-block;
-      margin: 5px;
-      text-align: center;
-    }
-    .pokemon img {
-      width: 80px;
-      height: 80px;
-      image-rendering: pixelated;
-    }
-    .strategy {
-      font-size: 0.8em;
-      margin-top: 10px;
-      white-space: pre-line;
-      display: none;
-      border: 1px solid #555;
-      padding: 8px;
-      border-radius: 6px;
-      background: #111;
-      text-align: left;
-    }
-    h3 {
-      font-size: 1.5em;
-      margin: 15px 0;
-      cursor: pointer;
-      text-shadow: 1px 1px #000;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PokéMMO • Gym Rerun — Guía Completa (Pixel Art)</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#000;
+    --accent:#ffcc00;
+    --muted:#bfc5c9;
+    --note:#9aa0a6;
+    --danger:#ff6b6b;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:#fff;
+    font-family: 'Press Start 2P', Arial, sans-serif;
+    text-align:center;
+    padding:24px;
+  }
+
+  header{margin-bottom:18px}
+  h1{color:var(--accent); font-size:30px; margin:6px 0}
+  .subtitle{color:var(--muted); font-size:12px; margin-bottom:18px}
+
+  section.region{
+    max-width:1100px;
+    margin:18px auto;
+    padding:16px;
+    border-radius:12px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  section.region h2{
+    margin:6px 0 12px; color:var(--accent); font-size:22px;
+  }
+
+  article.gym{
+    margin:14px auto;
+    padding:12px;
+    border-radius:10px;
+    width:92%;
+    background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.5));
+    border:1px solid rgba(255,255,255,0.03);
+  }
+
+  .gym-header{ display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .trainer-sprite{ width:96px; height:96px; image-rendering:pixelated; border-radius:10px; background:#000; border:1px solid rgba(255,255,255,0.06); }
+  .gym-title{ font-size:18px; color:#ffd966; margin-top:4px; }
+  .gym-sub{ color:var(--muted); font-size:11px; margin-top:2px; }
+
+  .team{ display:flex; justify-content:center; flex-wrap:wrap; gap:14px; margin-top:12px; }
+  .pkm{ width:160px; background:#0b0b0b; border:1px solid rgba(255,255,255,0.03); padding:8px; border-radius:8px; display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .pkm img{ width:96px; height:96px; image-rendering:pixelated; }
+  .pkm .name{ font-size:14px; font-weight:700; color:#fff; }
+  .pkm .name .plume{ color:#ffdede; font-weight:700; margin-left:6px; font-size:12px; }
+
+  .note{ text-align:left; max-width:880px; margin:10px auto 0; color:var(--note); white-space:pre-line; font-size:12px; line-height:1.4; }
+  .pc-reset{ color:var(--danger); font-weight:700; margin-top:10px; font-size:13px; }
+
+  @media (max-width:740px){
+    .pkm{ width:140px }
+    .pkm img{ width:80px; height:80px }
+    .trainer-sprite{ width:80px; height:80px }
+    h1{ font-size:20px }
+    section.region{ padding:12px }
+  }
+</style>
 </head>
 <body>
 
-  <h1>🏆 Guía Completa de Líderes de Gimnasio - Prehistoric 5 Route</h1>
+<header>
+  <h1>PokéMMO — Gym Rerun Guide (Prehistoric 5 route)</h1>
+  <div class="subtitle">Sprites animados desde Pokémon Showdown • "(Plume)" se respeta exactamente</div>
+</header>
 
-  <!-- Región Hoenn -->
-  <div class="region">
-    <h2>🌴 Hoenn</h2>
+<!-- HOENN -->
+<section class="region" id="hoenn">
+  <h2>HOENN</h2>
 
-    <!-- Líderes de Hoenn -->
-    <div class="leader-card">
-      <h3 onclick="toggleStrategy('hoenn1')">Líder 1 (Tipo Fuego)</h3>
-      <div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/hoenn1.png" alt="Líder 1"></div>
-      <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif" alt="Archeops"><p>Archeops</p></div>
-      <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif" alt="Blastoise"><p>Blastoise</p></div>
-      <div class="strategy" id="hoenn1">Estrategia: Utiliza Blastoise para resistir los ataques de tipo Fuego y derrota al líder con movimientos de agua.</div>
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/flannery.png" alt="Lavaridge">
+      <div class="gym-title">Lavaridge (Fire)</div>
+      <div class="gym-sub">Archeops + Blastoise</div>
     </div>
 
-    <div class="leader-card">
-      <h3 onclick="toggleStrategy('hoenn2')">Líder 2 (Tipo Eléctrico)</h3>
-      <div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/hoenn2.png" alt="Líder 2"></div>
-      <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/archeops.gif" alt="Archeops"><p>Archeops</p></div>
-      <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif" alt="Heatran"><p>Heatran</p></div>
-      <div class="strategy" id="hoenn2">Estrategia: Heatran es resistente a los ataques de tipo Eléctrico. Usa movimientos de tipo Fuego para aprovechar su ventaja.</div>
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/archeops.gif" alt="Archeops"><div class="name">Archeops</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif" alt="Blastoise"><div class="name">Blastoise</div></div>
+    </div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/wattson.png" alt="Mauville">
+      <div class="gym-title">Mauville (Electric)</div>
+      <div class="gym-sub">Archeops + Heatran</div>
     </div>
 
-    <!-- Agrega más líderes de Hoenn aquí -->
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/archeops.gif" alt="Archeops"><div class="name">Archeops</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran</div></div>
+    </div>
+  </article>
 
-  </div>
-
-  <!-- Región Unova -->
-  <div class="region">
-    <h2>🗽 Unova</h2>
-
-    <!-- Líderes de Unova -->
-    <div class="leader-card">
-      <h3 onclick="toggleStrategy('unova1')">Líder 1 (Tipo Bicho)</h3>
-      <div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/unova1.png" alt="Líder 1"></div>
-      <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif" alt="Blastoise"><p>Blastoise</p></div>
-      <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif" alt="Heatran"><p>Heatran</p></div>
-      <div class="strategy" id="unova1">Estrategia: Utiliza Heatran para resistir los ataques de tipo Bicho y derrota al líder con movimientos de tipo Fuego.</div>
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/winona.png" alt="Fortree">
+      <div class="gym-title">Fortree (Flying)</div>
+      <div class="gym-sub">Archeops + Typhlosion</div>
     </div>
 
-    <div class="leader-card">
-      <h3 onclick="toggleStrategy('unova2')">Líder 2 (Tipo Eléctrico)</h3>
-      <div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/unova2.png" alt="Líder 2"></div>
-      <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif" alt="Blastoise"><p>Blastoise</p></div>
-      <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif" alt="Heatran"><p>Heatran</p></div>
-      <div class="strategy" id="unova2">Estrategia: Usa Blastoise para resistir los ataques de tipo Eléctrico y vencer al líder con movimientos de agua.</div>
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/archeops.gif" alt="Archeops"><div class="name">Archeops</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosion <span class="plume">(Plume)</span></div></div>
     </div>
 
-    <!-- Agrega más líderes de Unova aquí -->
+    <div class="note">
+If Rain [Si Llueve]
+T1: Swap Archeops ➔ Torkoal
+T2: Swap Torkoal ➔ Archeops
+Chance of Archeops going down, continue if so. 
+If Torkoal paralyzed from Thunder, use Paralyze Heal after gym or PC Heal
+    </div>
+  </article>
 
-  </div>
-
-  <!-- Región Johto -->
-  <div class="region">
-    <h2>🎐 Johto</h2>
-
-    <!-- Líderes de Johto -->
-    <div class="leader-card">
-      <h3 onclick="toggleStrategy('johto1')">Líder 1 (Tipo Volador)</h3>
-      <div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/johto1.png" alt="Líder 1"></div>
-      <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif" alt="Heatran"><p>Heatran</p></div>
-      <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/blastoise.gif" alt="Blastoise"><p>Blastoise</p></div>
-      <div class="strategy" id="johto1">Estrategia: Usa Heatran para resistir los ataques de tipo Volador y derrota al líder con movimientos de tipo Fuego.</div>
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/brawly.png" alt="Dewford">
+      <div class="gym-title">Dewford (Fighting)</div>
+      <div class="gym-sub">Heatran + Blastoise</div>
     </div>
 
-    <div class="leader-card">
-      <h3 onclick="toggleStrategy('johto2')">Líder 2 (Tipo Hielo)</h3>
-      <div class="trainer-img"><img src="https://play.pokemonshowdown.com/sprites/trainers/johto2.png" alt="Líder 2"></div>
-      <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/heatran.gif" alt="Heatran"><p>Heatran</p></div>
-      <div class="pokemon"><img src="https://play.pokemonshowdown.com/sprites/gen5ani/typhlosion.gif" alt="Typhlosion"><p>Typhlosion</p></div>
-      <div class="strategy" id="johto2">Estrategia: Usa Heatran para resistir los ataques de tipo Hielo y derrota al líder con movimientos de tipo Fuego.</div>
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif" alt="Blastoise"><div class="name">Blastoise</div></div>
+    </div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/norman.png" alt="Petalburg">
+      <div class="gym-title">Petalburg (Normal)</div>
+      <div class="gym-sub">Torkoal + Blastoise into Heatran (Plume) +  Typhlosion</div>
     </div>
 
-    <!-- Agrega más líderes de Johto aquí -->
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/torkoal.gif" alt="Torkoal"><div class="name">Torkoal</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif" alt="Blastoise"><div class="name">Blastoise</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran <span class="plume">(Plume)</span></div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosion</div></div>
+    </div>
+  </article>
 
-  </div>
+  <div class="pc-reset">PC RESET (~49 mins on charm)</div>
+</section>
 
-  <!-- Agrega las regiones Sinnoh, Kanto y Paldea aquí siguiendo el mismo formato -->
+<!-- UNOVA -->
+<section class="region" id="unova">
+  <h2>UNOVA</h2>
 
-  <script>
-    function toggleStrategy(id) {
-      var strategy = document.getElementById(id);
-      if (strategy.style.display === "none" || strategy.style.display === "") {
-        strategy.style.display = "block";
-      } else {
-        strategy.style.display = "none";
-      }
-    }
-  </script>
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/burgh.png" alt="Castelia">
+      <div class="gym-title">Castelia (Bug)</div>
+      <div class="gym-sub">Blastoise + Heatran</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif" alt="Blastoise"><div class="name">Blastoise</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran</div></div>
+    </div>
+
+    <div class="note">If hurt from Accelgor team, heal here.</div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/elesa.png" alt="Nimbasa">
+      <div class="gym-title">Nimbasa (Electric)</div>
+      <div class="gym-sub">Blastoise + Heatran</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif" alt="Blastoise"><div class="name">Blastoise</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran</div></div>
+    </div>
+
+    <div class="note">Chance at Heatran getting hurt. Continue if so.</div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/clay.png" alt="Driftveil">
+      <div class="gym-title">Driftveil (Ground)</div>
+      <div class="gym-sub">Torkoal + Archeops into Heatran (Plume) +  Typhlosion</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/torkoal.gif" alt="Torkoal"><div class="name">Torkoal</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/archeops.gif" alt="Archeops"><div class="name">Archeops</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran <span class="plume">(Plume)</span></div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosion</div></div>
+    </div>
+  </article>
+
+  <div class="pc-reset">PC RESET (~42 mins on charm)</div>
+
+  <!-- Striaton split: Fire / Grass / Water -->
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/cilan.png" alt="Striaton - Fire">
+      <div class="gym-title">Striaton — Fire</div>
+      <div class="gym-sub">Fire: Blastoise + Archeops</div>
+    </div>
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif" alt="Blastoise"><div class="name">Blastoise</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/archeops.gif" alt="Archeops"><div class="name">Archeops</div></div>
+    </div>
+    <div class="note">If Blastoise is hurt from fire leader, PC Reset</div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/cilan.png" alt="Striaton - Grass">
+      <div class="gym-title">Striaton — Grass</div>
+      <div class="gym-sub">Grass: Heatran + Typhlosion (Plume)</div>
+    </div>
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran <span class="plume">(Plume)</span></div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosion</div></div>
+    </div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/cilan.png" alt="Striaton - Water">
+      <div class="gym-title">Striaton — Water</div>
+      <div class="gym-sub">Water: Torkoal + Archeops into Heatran (Plume) +  Typhlosion</div>
+    </div>
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/torkoal.gif" alt="Torkoal"><div class="name">Torkoal</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/archeops.gif" alt="Archeops"><div class="name">Archeops</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran <span class="plume">(Plume)</span></div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosion</div></div>
+    </div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/skyla.png" alt="Mistralton">
+      <div class="gym-title">Mistralton (Flying)</div>
+      <div class="gym-sub">Blastoise + Heatran</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif" alt="Blastoise"><div class="name">Blastoise</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran</div></div>
+    </div>
+
+    <div class="note">Chance at getting eject buttoned, just attack through. If Heatran or Typhlosion dies from this, PC Reset then continue and skip next PC Reset</div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/brycen.png" alt="Icirrus">
+      <div class="gym-title">Icirrus (Ice)</div>
+      <div class="gym-sub">Typhlosion (Plume) + Heatran (Plume)</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosion <span class="plume">(Plume)</span></div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran <span class="plume">(Plume)</span></div></div>
+    </div>
+
+    <div class="note">If Frozen from Blizzard, use Ice Heal on frozen one’s turn</div>
+  </article>
+
+  <div class="pc-reset">PC RESET (~32 mins on charm)</div>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/drayden.png" alt="Opelucid">
+      <div class="gym-title">Opelucid (Dragon)</div>
+      <div class="gym-sub">Torkoal + Archeops (Tailwind) into  Typhlosion + Heatran (Plume)</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/torkoal.gif" alt="Torkoal"><div class="name">Torkoal</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/archeops.gif" alt="Archeops"><div class="name">Archeops <span style="font-size:11px;color:var(--muted)"> (Tailwind)</span></div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosion</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran <span class="plume">(Plume)</span></div></div>
+    </div>
+  </article>
+</section>
+
+<!-- JOHTO -->
+<section class="region" id="johto">
+  <h2>JOHTO</h2>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/falkner.png" alt="Violet">
+      <div class="gym-title">Violet (Flying)</div>
+      <div class="gym-sub">Heatran + Blastoise</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif" alt="Blastoise"><div class="name">Blastoise</div></div>
+    </div>
+
+    <div class="note">Chance at Heatran and Blastoise getting hurt. Continue if so.</div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/pryce.png" alt="Mahogany">
+      <div class="gym-title">Mahogany (Ice)</div>
+      <div class="gym-sub">Heatran (Plume) + Typhlosion</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran <span class="plume">(Plume)</span></div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosion</div></div>
+    </div>
+
+    <div class="note">If Frozen from Blizzard, use Ice Heal on frozen one’s turn</div>
+  </article>
+
+  <div class="pc-reset">PC RESET (~26 mins on charm)</div>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/whitney.png" alt="Goldenrod">
+      <div class="gym-title">Goldenrod (Normal)</div>
+      <div class="gym-sub">Blastoise + Heatran</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif" alt="Blastoise"><div class="name">Blastoise</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran</div></div>
+    </div>
+
+    <div class="note">Put Blastoise on &lt; left side (above Heatran in team order)
+Chance at Heatran getting hurt. Continue if so.</div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/bugsy.png" alt="Azalea">
+      <div class="gym-title">Azalea (Bug)</div>
+      <div class="gym-sub">Typhlosion (Plume) + Heatran</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosion <span class="plume">(Plume)</span></div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran</div></div>
+    </div>
+
+    <div class="note">If Sand [Arena] appears
+Swap Typhlosion ➔ Torkoal
+Swap Torkoal ➔ Typhlosion (Plume)</div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/chuck.png" alt="Cianwood">
+      <div class="gym-title">Cianwood (Fighting)</div>
+      <div class="gym-sub">Torkoal + Blastoise into Heatran (Plume) + Typhlosion</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/torkoal.gif" alt="Torkoal"><div class="name">Torkoal</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif" alt="Blastoise"><div class="name">Blastoise</div></div>
+    </div>
+
+    <div class="note">Turn 1 rock slide flinches can be annoying here. Skip if preferred.</div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/jasmine.png" alt="Olivine">
+      <div class="gym-title">Olivine (Steel)</div>
+      <div class="gym-sub">Archeops + Typhlosion</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/archeops.gif" alt="Archeops"><div class="name">Archeops</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosion</div></div>
+    </div>
+
+    <div class="note">If Archeops goes down replace Heatran 
+Earth Power vs Corsola/Rapidash
+Eruption vs Blastoise Team</div>
+  </article>
+
+  <div class="pc-reset">PC RESET (~18 mins on charm)</div>
+</section>
+
+<!-- SINNOH -->
+<section class="region" id="sinnoh">
+  <h2>SINNOH</h2>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/maylene.png" alt="Veilstone">
+      <div class="gym-title">Veilstone (Fighting)</div>
+      <div class="gym-sub">Archeops + Typhlosion</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/archeops.gif" alt="Archeops"><div class="name">Archeops</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosion</div></div>
+    </div>
+
+    <div class="note">Chance at Archeops getting hurt. Continue if so, or heal if you want to be safe or if KO’d</div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/gardenia.png" alt="Eterna">
+      <div class="gym-title">Eterna (Grass)</div>
+      <div class="gym-sub">Archeops + Heatran</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/archeops.gif" alt="Archeops"><div class="name">Archeops</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran</div></div>
+    </div>
+
+    <div class="note">If Archeops is less than 50%, heal after 
+Replace Typhlosion if needed</div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/volkner.png" alt="Sunyshore">
+      <div class="gym-title">Sunyshore (Electric)</div>
+      <div class="gym-sub">Archeops + Blastoise</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/archeops.gif" alt="Archeops"><div class="name">Archeops</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif" alt="Blastoise"><div class="name">Blastoise</div></div>
+    </div>
+
+    <div class="note">if Lanturn lead
+T1: Swap Blastoise ➔ Torkoal
+If Archeops dies (Thunder = 50% accuracy), replace with Blastoise
+T2: Explosion
+T3: Typhlosion + Heatran (Plume) 
+Skip the next gym if this happens or heal and do it if you have time</div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/crasherwake.png" alt="Pastoria">
+      <div class="gym-title">Pastoria (Water)</div>
+      <div class="gym-sub">Torkoal + Archeops into Heatran (Plume) +  Typhlosion</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/torkoal.gif" alt="Torkoal"><div class="name">Torkoal</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/archeops.gif" alt="Archeops"><div class="name">Archeops</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran <span class="plume">(Plume)</span></div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosion</div></div>
+    </div>
+  </article>
+</section>
+
+<!-- KANTO -->
+<section class="region" id="kanto">
+  <h2>KANTO</h2>
+
+  <div class="pc-reset">PC RESET (~10 mins on charm)</div>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/lt.surge.png" alt="Vermillion">
+      <div class="gym-title">Vermillion (Electric)</div>
+      <div class="gym-sub">Heatran (Plume) + Typhlosion</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran <span class="plume">(Plume)</span></div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosion</div></div>
+    </div>
+
+    <div class="note">If Rain lead
+T1: Swap Heatran ➔ Torkoal 
+T2: Torkoal ➔ Heatran
+Finish Heatran (Plume) + Typhlosion</div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/brock.png" alt="Pewter">
+      <div class="gym-title">Pewter (Rock)</div>
+      <div class="gym-sub">Blastoise + Archeops</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/blastoise.gif" alt="Blastoise"><div class="name">Blastoise</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/archeops.gif" alt="Archeops"><div class="name">Archeops</div></div>
+    </div>
+
+    <div class="note">If Archeops goes down, replace with Heatran 
+If Toxicroak
+T1: Swap Blastoise ➔ Heatran (Plume), Archeops may die
+T2: Heatran (Plume) + Typhlosion (Plume)</div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/misty.png" alt="Cerulean">
+      <div class="gym-title">Cerulean (Water)</div>
+      <div class="gym-sub">Torkoal + Archeops or Blastoise into Heatran (Plume) + Typhlosion</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/torkoal.gif" alt="Torkoal"><div class="name">Torkoal</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/archeops.gif" alt="Archeops"><div class="name">Archeops / Blastoise</div></div>
+    </div>
+  </article>
+
+  <article class="gym">
+    <div class="gym-header">
+      <img class="trainer-sprite" src="https://play.pokemonshowdown.com/sprites/trainers/erika.png" alt="Celadon">
+      <div class="gym-title">Celadon (Grass)</div>
+      <div class="gym-sub">Heatran + Typhlosion (Plume)</div>
+    </div>
+
+    <div class="team">
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/heatran.gif" alt="Heatran"><div class="name">Heatran</div></div>
+      <div class="pkm"><img src="https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif" alt="Typhlosion"><div class="name">Typhlosion <span class="plume">(Plume)</span></div></div>
+    </div>
+  </article>
+</section>
+
+<footer style="color:var(--muted); font-size:12px; margin-top:18px;">
+  Sprites GIF: Pokémon Showdown (anim). Si ves un "?" en alguna imagen indica nombre distinto en Showdown — dime cuál y lo corrijo.
+</footer>
 
 </body>
 </html>
